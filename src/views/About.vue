@@ -8,19 +8,23 @@
 </template>
 
 <script>
-import { reactive, ref, computed, watch } from 'vue'
+import { reactive, ref, computed, watch, getCurrentInstance } from 'vue'
 
 export default {
   setup() {
+    const { ctx } = getCurrentInstance();  //ctx 当前组件的实例，类似2.x的this
+    console.log(ctx)
     const state = reactive({
       count: 0,
       double: computed(() => state.count * 2)
     })
     const count = ref(0)
 
-    function increment() {
+    const increment = () => {
       state.count++
       count.value++
+      // ctx.$router 是 Vue Router 实例，里面包含了 currentRoute 可以获取到当前的路由信息
+      console.log(ctx.$router.currentRoute.value)
     }
 
     watch(
