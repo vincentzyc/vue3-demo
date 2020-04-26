@@ -17,8 +17,7 @@ export default {
   },
   setup() {
     const msg = ref("Welcome to Your Vue.js App")
-    // const vm = getCurrentInstance();
-    function updatePropsMsg() {
+    const updatePropsMsg = () => {
       msg.value = msg.value + " ha";
     }
     return {
