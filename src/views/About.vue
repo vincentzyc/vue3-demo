@@ -24,7 +24,7 @@ export default {
     console.log(ctx)
 
     // ctx.$router 是 Vue Router 实例，里面包含了 currentRoute 可以获取到当前的路由信息
-    console.log(ctx.$router.currentRoute.value)
+    console.log(ctx.$router)
 
 
     // Vuex 的语法和 API 基本没变
