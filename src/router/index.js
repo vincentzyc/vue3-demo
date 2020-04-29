@@ -23,6 +23,11 @@ const routes = [
     path: '/todo',
     name: 'TodoList',
     component: () => import('../views/TodoList.vue')
+  },
+  {
+    path: '/luckdraw',
+    name: 'LuckDraw',
+    component: () => import('../views/LuckDraw.vue')
   }
 ]
 
