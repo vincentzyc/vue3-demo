@@ -3,19 +3,62 @@
     <!-- 滚动号码 -->
     <div class="luckdraw-scroll">
       <ul class="bg-scroll">
-        <li v-for="(item, i) in list" :key="i" ref="rollLi" :class="{ 'anim' : animate && i == 0 }">
+        <li v-for="(item, i) in list" :key="i" :class="{ 'anim' : animate && i == 0 }">
           <span class="lkq-name">{{ item.phone }}</span>
         </li>
       </ul>
     </div>
     <!-- 抽奖弹窗 -->
     <div class="turntable">
-      <!-- 转动背景 -->
-      <div :class="['run-item','run-item-' + current]"></div>
-      <!-- 礼品框 -->
-      <img src="../assets/images/present.png" alt class="present-content" />
-      <!-- 抽奖按钮 -->
-      <img @click="handleStart" src="../assets/images/bigBottom.png" alt class="start-btn-big" />
+      <svg class="bulb svelte-ecndpu" viewBox="-6 -6 316 316" fill="currentColor" fill-rule="evenodd">
+        <g class="bulb-1 svelte-ecndpu">
+          <circle cx="10" cy="10" r="4" />
+          <circle cx="78" cy="4" r="4" />
+          <circle cx="152" cy="4" r="4" />
+          <circle cx="226" cy="4" r="4" />
+          <circle cx="294" cy="10" r="4" />
+          <circle cx="4" cy="89" r="4" />
+          <circle cx="4" cy="173" r="4" />
+          <circle cx="4" cy="258" r="4" />
+          <circle cx="41" cy="300" r="4" />
+          <circle cx="115" cy="300" r="4" />
+          <circle cx="189" cy="300" r="4" />
+          <circle cx="263" cy="300" r="4" />
+          <circle cx="300" cy="258" r="4" />
+          <circle cx="300" cy="173" r="4" />
+          <circle cx="300" cy="89" r="4" />
+        </g>
+        <g class="bulb-2 svelte-ecndpu">
+          <circle cx="41" cy="4" r="4" />
+          <circle cx="115" cy="4" r="4" />
+          <circle cx="189" cy="4" r="4" />
+          <circle cx="263" cy="4" r="4" />
+          <circle cx="4" cy="46" r="4" />
+          <circle cx="4" cy="131" r="4" />
+          <circle cx="4" cy="215" r="4" />
+          <circle cx="10" cy="294" r="4" />
+          <circle cx="294" cy="294" r="4" />
+          <circle cx="300" cy="215" r="4" />
+          <circle cx="300" cy="131" r="4" />
+          <circle cx="300" cy="46" r="4" />
+          <circle cx="78" cy="300" r="4" />
+          <circle cx="152" cy="300" r="4" />
+          <circle cx="226" cy="300" r="4" />
+        </g>
+      </svg>
+      <ul class="awards-list">
+        <li
+          v-for="(item,key) in awardList"
+          :key="item.id"
+          class="awards-item"
+          :class="{'awards-item-draw':key===4,'run-item':item.runId===current}"
+        >
+          <div v-if="key===4" @click="handleStart" class="draw-btn svelte-ecndpu">
+            <span class="draw-btn-text">点击抽奖</span>
+          </div>
+          <div v-else>{{item.name}}</div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -24,6 +67,7 @@
 import {
   ref,
   reactive,
+  computed,
   onMounted
 } from "vue"
 
@@ -37,41 +81,7 @@ export default {
       time = 0,  // 记录开始抽奖的时间
       minRotateTime = 2.5, //抽奖动画最少转动时间
       rotateTime = 5, // 抽奖动画转动时间
-      isRuningLucky = false,  // 是否正在抽奖
-      awards = [  // 奖品列表
-        {
-          id: 1,
-          name: '潘多拉音箱'
-        },
-        {
-          id: 2,
-          name: '小酷M1耳机'
-        },
-        {
-          id: 3,
-          name: '酷狗VIP会员'
-        },
-        {
-          id: 4,
-          name: '8元话费'
-        },
-        {
-          id: 5,
-          name: '12元话费'
-        },
-        {
-          id: 6,
-          name: '谢谢参与'
-        },
-        {
-          id: 7,
-          name: '4元话费'
-        },
-        {
-          id: 8,
-          name: '谢谢参与'
-        }
-      ];
+      isRuningLucky = false;  // 是否正在抽奖
     const animate = ref(false), //中奖名单滚动动画控制
       current = ref(0),  // 当前转动的位置
       list = reactive([  // 中奖号码
@@ -84,7 +94,54 @@ export default {
         {
           phone: "156****2336抽中2元话费"
         }
-      ])
+      ]),
+      awards = reactive([// 奖品列表
+        {
+          id: 1,
+          runId: 0,
+          name: '潘多拉音箱'
+        },
+        {
+          id: 2,
+          runId: 1,
+          name: '小酷M1耳机'
+        },
+        {
+          id: 3,
+          runId: 2,
+          name: '酷狗VIP会员'
+        },
+        {
+          id: 4,
+          runId: 7,
+          name: '8元话费'
+        },
+        {
+          id: 5,
+          runId: 3,
+          name: '12元话费'
+        },
+        {
+          id: 6,
+          runId: 6,
+          name: '谢谢参与1'
+        },
+        {
+          id: 7,
+          runId: 5,
+          name: '4元话费'
+        },
+        {
+          id: 8,
+          runId: 4,
+          name: '谢谢参与2'
+        }
+      ]),
+      awardList = computed(() => {
+        let newArr = JSON.parse(JSON.stringify(awards));
+        newArr.splice(4, 0, { name: 'drawBtn' })
+        return newArr
+      })
     const scroll = () => {
       // 中奖名单滚动
       animate.value = true;
@@ -113,9 +170,8 @@ export default {
     const drawAward = () => {
       // 请求接口，模拟一个抽奖数据(假设请求时间为2s)
       setTimeout(() => {
-        award = {
-          id: Math.ceil(Math.random() * 8)  //随机奖品
-        };
+        let awardId = Math.ceil(Math.random() * 8);  //随机奖品
+        award = awards.find(v => v.id === awardId)
         console.log("返回的抽奖结果是", award);
       }, 2000);
       move();
@@ -130,16 +186,17 @@ export default {
         if (award.id && (Date.now() - time) / 1000 > minRotateTime) {
           console.log("奖品出来了");
           speed += diff; // 转动减速
-          // 若转动时间超过5秒，并且奖品id等于小格子的奖品id，则停下来
+          // 若转动时间超过5秒，等到当前格子是对应奖品id数组，则停下来
           if (
             (Date.now() - time) / 1000 > rotateTime &&
-            award.id == awards[current.value].id
+            award.runId === current.value
           ) {
             clearTimeout(timer);
             setTimeout(() => {
               isRuningLucky = false;
               // 这里写停下来要执行的操作（弹出奖品框之类的）
-              console.log("您抽中的奖品是" + awards[current.value].name + ",奖品id是" + awards[current.value].id);
+              let getAward = awards.find(v => v.id === award.id);
+              console.log("您抽中的奖品是" + getAward.name + ",奖品id是" + getAward.id);
             }, 400);
             return;
           }
@@ -154,6 +211,8 @@ export default {
       setInterval(scroll, 2000);
     })
     return {
+      awards,
+      awardList,
       animate,
       list,
       current,
@@ -166,26 +225,25 @@ export default {
 <style lang="stylus" scoped>
 .luckdraw-content {
   margin-top: 0.4rem;
-  background-color: #000;
   width: 100%;
   padding-bottom: 1rem;
-  overflow: hidden;
 
-  // 滚动号码
+  // 号码滚动
   .luckdraw-scroll {
     .bg-scroll {
       position: relative;
-      background: url('../assets/images/phone.png') center top no-repeat;
-      background-size: 100%;
-      width: 100%;
+      width: 90%;
       height: 0.74rem;
       line-height: 0.74rem;
       font-size: 0.35rem;
+      border-radius: 0.4rem;
       overflow: hidden;
-      text-align: center;
-      letter-spacing: 0.03rem;
       list-style: none;
       padding: 0;
+      margin: 0 auto;
+      text-align: center;
+      letter-spacing: 0.03rem;
+      background: linear-gradient(to right, #bcbcc1, #cdcdcd, #bcbcc1);
     }
 
     .lkq-name {
@@ -200,85 +258,114 @@ export default {
     }
   }
 
-  // 抽奖
+  // 转盘
   .turntable {
     position: relative;
+    margin: 0.4rem auto;
+    width: 6rem;
+    height: 6rem;
+    background: #fed479;
+    border-radius: 0.4rem;
+    box-sizing: border-box;
+    padding: 5%;
 
-    .present-content {
-      width: 80%;
-      z-index: 100;
+    .bulb {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
     }
 
-    .start-btn-big {
-      width: 1.8rem;
-      height: 1.8rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -0.95rem;
-      margin-left: -0.9rem;
-      z-index: 999;
-      animation: btn-animation 0.3s ease-out infinite alternate;
+    .bulb .bulb-1 {
+      animation: bulb-animation 0.5s -0.25s infinite;
+    }
+
+    .bulb .bulb-2 {
+      animation: bulb-animation 0.5s infinite;
+    }
+
+    .awards-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .awards-item {
+      width: 32%;
+      height: 32%;
+      margin: 0.66%;
+      float: left;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-sizing: border-box;
+      border: 3px solid #fff;
+      border-radius: 25%;
+      font-size: 0.24rem;
+      background: #fff;
+      color: #d65c23;
+      border-color: #ffffff;
+      background-color: #ffffff;
+      transition: border-color 0.1s;
+    }
+
+    .awards-item-draw {
+      background: #963434;
+      border: none;
+      overflow: hidden;
+    }
+
+    .draw-btn {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25%;
+      height: 100%;
+      width: 100%;
+      color: #fff;
+      font-size: 0.28rem;
+      border: 3px solid #ff7051;
+      background: #ff7051;
+      animation: draw-btn-jump 0.5s infinite;
     }
 
     .run-item {
-      display: block;
-      position: absolute;
-      left: 8.5%;
-      top: -0.1rem;
-      width: 1.9rem;
-      height: 1.9rem;
-      border: 0.06rem solid #ff0000;
-      box-shadow: 0px 0px 10px 3px #f00, inset 0px 0px 10px 3px #ff0000;
-    }
-
-    .run-item-0 {
-      margin: 0 0;
-    }
-
-    .run-item-1 {
-      margin: 0 0 0 1.98rem;
-    }
-
-    .run-item-2 {
-      margin: 0 0 0 3.95rem;
-    }
-
-    .run-item-3 {
-      margin: 1.95rem 0 0 3.95rem;
-    }
-
-    .run-item-4 {
-      margin: 3.85rem 0 0 3.95rem;
-    }
-
-    .run-item-5 {
-      margin: 3.85rem 0 0 1.98rem;
-    }
-
-    .run-item-6 {
-      margin: 3.85rem 0 0 0;
-    }
-
-    .run-item-7 {
-      margin: 1.95rem 0 0 0;
+      position: relative;
+      border-color: #ff7051;
     }
   }
 }
 
-@keyframes btn-animation {
+@keyframes bulb-animation {
   0% {
-    transform: scale(1);
+    color: #FFFFFF;
+  }
+
+  50% {
+    color: #FFE37F;
   }
 
   100% {
-    transform: scale(0.85);
+    color: #FFFFFF;
   }
 }
 
-.notice-img {
-  position: absolute;
-  top: 0.12rem;
-  left: 0.55rem;
+@keyframes draw-btn-jump {
+  0% {
+    top: -6px;
+  }
+
+  50% {
+    top: 0;
+  }
+
+  100% {
+    top: -6px;
+  }
 }
 </style>
