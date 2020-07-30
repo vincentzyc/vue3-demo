@@ -13,7 +13,7 @@
       <h3>任务清单</h3>
       <ul>
         <li v-for="item in undoneTodoList" :key="item.id">
-          <span>---{{ item.name }}--- </span>
+          <span>---{{ item.name }}---</span>
           <button @click="doneTodo(item)">已完成</button>
           <button @click="delTodoAction(item, true)">删除</button>
         </li>
@@ -23,7 +23,7 @@
       <h3>已完成的任务清单</h3>
       <ul>
         <li v-for="item in completedTodoList" :key="item.id">
-          <span>---{{ item.name }}--- </span>
+          <span>---{{ item.name }}---</span>
           <button @click="delTodoAction(item, false)">删除</button>
         </li>
       </ul>
@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import { ref, reactive, getCurrentInstance } from "vue";
+import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
 
-export default {
+export default defineComponent({
   name: "ToDoList",
   setup() {
     const { ctx } = getCurrentInstance();
@@ -80,5 +80,5 @@ export default {
       completedTodoList
     };
   }
-};
+});
 </script>
