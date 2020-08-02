@@ -13,12 +13,17 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
+    component: () => import(/* webpackChunkName: "luckdraw-about" */ '@/views/About.vue')
   },
   {
     path: '/todoList',
     name: 'TodoList',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/TodoList.vue')
+    component: () => import(/* webpackChunkName: "todo" */ '@/views/TodoList.vue')
+  },
+  {
+    path: '/luckdraw',
+    name: 'LuckDraw',
+    component: () => import(/* webpackChunkName: "luckdraw-about" */ '@/views/LuckDraw.vue')
   }
 ]
 
