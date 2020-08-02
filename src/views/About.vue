@@ -16,7 +16,7 @@ export default {
 
 
     onMounted(() => {
-      console.log(root.value)
+      // console.log(root.value)
       todoinput.value.focus()
     })
 
