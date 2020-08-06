@@ -68,7 +68,8 @@ import {
   ref,
   reactive,
   computed,
-  onMounted
+  onMounted,
+  nextTick
 } from "vue"
 
 export default {
@@ -210,7 +211,8 @@ export default {
       return
     }
 
-    onMounted(() => {
+    onMounted(async () => {
+      await nextTick()
       setInterval(scroll, 2000);
     })
     return {
