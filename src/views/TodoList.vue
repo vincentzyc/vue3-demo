@@ -31,44 +31,57 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
 
 export default defineComponent({
   name: "ToDoList",
   setup() {
-    const { ctx } = getCurrentInstance();
-    
+    const { ctx } = getCurrentInstance() as any;
+
     const addTodoName = ref(""); // input 绑定值
-    const undoneTodoList = reactive([{
-      id: Date.now(),
-      name: '吃饭'
-    }]); // 清单列表
-    const completedTodoList = reactive([{
-      id: Date.now(),
-      name: '睡觉'
-    }]); // 已完成的清单列表
+    const undoneTodoList = reactive([
+      {
+        id: Date.now(),
+        name: "吃饭",
+      },
+    ]); // 清单列表
+    const completedTodoList = reactive([
+      {
+        id: Date.now(),
+        name: "睡觉",
+      },
+    ]); // 已完成的清单列表
 
     const addTodoAction = () => {
-      if (addTodoName.value === "") return ctx.$refs.todoinput.focus()
+      if (addTodoName.value === "") return ctx.$refs.todoinput.focus();
       const obj = {
         id: Date.now(),
-        name: addTodoName
+        name: addTodoName,
       };
       undoneTodoList.push(JSON.parse(JSON.stringify(obj)));
       addTodoName.value = "";
     };
 
-    const delTodoAction = (item, todo) => {
+    const delTodoAction = (item: { id: number }, todo: boolean) => {
       if (todo) {
-        undoneTodoList.splice(undoneTodoList.findIndex(i => i.id === item.id), 1);
+        undoneTodoList.splice(
+          undoneTodoList.findIndex((i) => i.id === item.id),
+          1
+        );
       } else {
-        completedTodoList.splice(completedTodoList.findIndex(i => i.id === item.id), 1);
+        completedTodoList.splice(
+          completedTodoList.findIndex((i) => i.id === item.id),
+          1
+        );
       }
     };
 
-    const doneTodo = item => {
-      undoneTodoList.splice(undoneTodoList.findIndex(i => i.id === item.id), 1);
+    const doneTodo = (item: { id: number; name: string }) => {
+      undoneTodoList.splice(
+        undoneTodoList.findIndex((i) => i.id === item.id),
+        1
+      );
       completedTodoList.push(item);
     };
 
@@ -78,8 +91,8 @@ export default defineComponent({
       delTodoAction,
       doneTodo,
       undoneTodoList,
-      completedTodoList
+      completedTodoList,
     };
-  }
+  },
 });
 </script>
