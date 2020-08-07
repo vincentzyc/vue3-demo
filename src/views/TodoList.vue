@@ -32,26 +32,12 @@
 </template>
 
 <script lang="ts">
-import {
-  ref,
-  reactive,
-  defineComponent,
-  getCurrentInstance,
-  ComponentInternalInstance,
-} from "vue";
-
-interface Instance extends ComponentInternalInstance {
-  ctx: {
-    $refs: {
-      todoinput: HTMLInputElement;
-    };
-  };
-}
+import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
 
 export default defineComponent({
   name: "ToDoList",
   setup() {
-    const { ctx } = getCurrentInstance() as Instance;
+    const CurrentInstance = getCurrentInstance();
 
     const addTodoName = ref(""); // input 绑定值
     // const todoinput = ref(null); // input ref
@@ -69,7 +55,8 @@ export default defineComponent({
     ]); // 已完成的清单列表
 
     const addTodoAction = () => {
-      if (addTodoName.value === "") return ctx.$refs.todoinput.focus();
+      if (addTodoName.value === "")
+        return (CurrentInstance?.refs?.todoinput as HTMLInputElement).focus();
       // if (addTodoName.value === "") return todoinput.focus();
       const obj = {
         id: Date.now(),
