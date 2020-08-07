@@ -158,9 +158,7 @@ export default {
     const move = () => {
       const timer = setTimeout(() => {
         current.value++;
-        if (current.value > 7) {
-          current.value = 0;
-        }
+        if (current.value > 7) current.value = 0;
         // 若抽中的奖品id存在，并且转动时间大于2.5秒后，则开始减速转动
         if (award?.id && (Date.now() - time) / 1000 > minRotateTime) {
           console.log("奖品出来了");
