@@ -40,6 +40,7 @@ export default defineComponent({
     const { ctx } = getCurrentInstance() as any;
 
     const addTodoName = ref(""); // input 绑定值
+    // const todoinput = ref(null); // input ref
     const undoneTodoList = reactive([
       {
         id: Date.now(),
@@ -55,6 +56,7 @@ export default defineComponent({
 
     const addTodoAction = () => {
       if (addTodoName.value === "") return ctx.$refs.todoinput.focus();
+      // if (addTodoName.value === "") return todoinput.focus();
       const obj = {
         id: Date.now(),
         name: addTodoName,
@@ -90,6 +92,7 @@ export default defineComponent({
       addTodoAction,
       delTodoAction,
       doneTodo,
+      // todoinput,
       undoneTodoList,
       completedTodoList,
     };
