@@ -32,12 +32,26 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
+import {
+  ref,
+  reactive,
+  defineComponent,
+  getCurrentInstance,
+  ComponentInternalInstance,
+} from "vue";
+
+interface Instance extends ComponentInternalInstance {
+  ctx: {
+    $refs: {
+      todoinput: HTMLInputElement;
+    };
+  };
+}
 
 export default defineComponent({
   name: "ToDoList",
   setup() {
-    const { ctx } = getCurrentInstance() as any;
+    const { ctx } = getCurrentInstance() as Instance;
 
     const addTodoName = ref(""); // input 绑定值
     // const todoinput = ref(null); // input ref
