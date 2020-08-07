@@ -63,88 +63,89 @@
   </div>
 </template>
 
-<script>
-import {
-  ref,
-  reactive,
-  computed,
-  onMounted,
-  nextTick
-} from "vue"
+<script lang="ts">
+import { ref, reactive, computed, onMounted, nextTick } from "vue";
+
+interface AwardTypes {
+  id: number;
+  runId: number;
+  name: string;
+}
 
 export default {
   name: "LuckDraw",
   setup() {
-    const initSpeed = 200,  // 初始速度
-      diff = 20,  // 速度变化的值，值越大，变化地越快
+    const initSpeed = 200, // 初始速度
+      diff = 20, // 速度变化的值，值越大，变化地越快
       minRotateTime = 2.5, //抽奖动画最少转动时间
       rotateTime = 5; // 抽奖动画转动时间
 
-    let speed = null,  // 变化速度
-      award = {},  // 抽中的奖品
-      time = 0,  // 记录开始抽奖的时间
-
-      isRuningLucky = false;  // 是否正在抽奖
+    let speed = 0, // 变化速度
+      award: AwardTypes, // 抽中的奖品
+      time = 0, // 记录开始抽奖的时间
+      isRuningLucky = false; // 是否正在抽奖
     const animate = ref(false), //中奖名单滚动动画控制
-      current = ref(0),  // 当前转动的位置
-      list = reactive([  // 中奖号码
+      current = ref(0), // 当前转动的位置
+      list = reactive([
+        // 中奖号码
         {
-          phone: "186****2336抽中0元话费"
+          phone: "186****2336抽中0元话费",
         },
         {
-          phone: "166****2336抽中1元话费"
+          phone: "166****2336抽中1元话费",
         },
         {
-          phone: "156****2336抽中2元话费"
-        }
+          phone: "156****2336抽中2元话费",
+        },
       ]),
-      awards = reactive([// 奖品列表
+      awards = reactive([
+        // 奖品列表
         {
           id: 1,
           runId: 0,
-          name: '潘多拉音箱'
+          name: "潘多拉音箱",
         },
         {
           id: 2,
           runId: 1,
-          name: '小酷M1耳机'
+          name: "小酷M1耳机",
         },
         {
           id: 3,
           runId: 2,
-          name: '酷狗VIP会员'
+          name: "酷狗VIP会员",
         },
         {
           id: 4,
           runId: 7,
-          name: '8元话费'
+          name: "8元话费",
         },
         {
           id: 5,
           runId: 3,
-          name: '12元话费'
+          name: "12元话费",
         },
         {
           id: 6,
           runId: 6,
-          name: '谢谢参与1'
+          name: "谢谢参与1",
         },
         {
           id: 7,
           runId: 5,
-          name: '4元话费'
+          name: "4元话费",
         },
         {
           id: 8,
           runId: 4,
-          name: '谢谢参与2'
-        }
+          name: "谢谢参与2",
+        },
       ]),
       awardList = computed(() => {
-        const newArr = JSON.parse(JSON.stringify(awards));
-        newArr.splice(4, 0, { name: 'drawBtn' })
-        return newArr
-      })
+        const newArr: {}[] = JSON.parse(JSON.stringify(awards));
+        newArr.splice(4, 0, { name: "drawBtn" });
+        return newArr;
+      });
     const scroll = () => {
       // 中奖名单滚动
       animate.value = true;
@@ -153,7 +154,7 @@ export default {
         list.shift();
         animate.value = false;
       }, 500);
-    }
+    };
     const move = () => {
       const timer = setTimeout(() => {
         current.value++;
@@ -161,7 +162,7 @@ export default {
           current.value = 0;
         }
         // 若抽中的奖品id存在，并且转动时间大于2.5秒后，则开始减速转动
-        if (award.id && (Date.now() - time) / 1000 > minRotateTime) {
+        if (award?.id && (Date.now() - time) / 1000 > minRotateTime) {
           console.log("奖品出来了");
           speed += diff; // 转动减速
           // 若转动时间超过5秒，等到当前格子是对应奖品id数组，则停下来
@@ -173,8 +174,14 @@ export default {
             setTimeout(() => {
               isRuningLucky = false;
               // 这里写停下来要执行的操作（弹出奖品框之类的）
-              const getAward = awards.find(v => v.id === award.id);
-              console.log("您抽中的奖品是" + getAward.name + ",奖品id是" + getAward.id);
+              const getAward: AwardTypes | undefined = awards.find(
+                (v) => v.id === award.id
+              );
+              if (getAward) {
+                console.log(
+                  `您抽中的奖品是${getAward.name},奖品id是${getAward.id}`
+                );
+              }
             }, 400);
             return;
           }
@@ -184,20 +191,22 @@ export default {
         }
         move();
       }, speed);
-    }
+    };
     const drawAward = () => {
       // 请求接口，模拟一个抽奖数据(假设请求时间为2s)
       setTimeout(() => {
-        const awardId = Math.ceil(Math.random() * 8);  //随机奖品
-        award = awards.find(v => v.id === awardId)
+        const awardId = Math.ceil(Math.random() * 8); //随机奖品
+        const getAward = awards.find((v) => v.id === awardId);
+        if (getAward) award = getAward;
         console.log("返回的抽奖结果是", award);
       }, 2000);
       move();
-    }
-    const handleStart = () => { // 开始抽奖
+    };
+    const handleStart = () => {
+      // 开始抽奖
       if (isRuningLucky) {
         console.log("正在抽奖中...");
-        return
+        return;
       }
       if (isNaN(Number(initSpeed))) {
         return false;
@@ -208,22 +217,22 @@ export default {
       time = Date.now();
       drawAward();
       console.log("开始抽奖");
-      return
-    }
+      return;
+    };
 
     onMounted(async () => {
-      await nextTick()
+      await nextTick();
       setInterval(scroll, 2000);
-    })
+    });
     return {
       awards,
       awardList,
       animate,
       list,
       current,
-      handleStart
-    }
-  }
+      handleStart,
+    };
+  },
 };
 </script>
 
