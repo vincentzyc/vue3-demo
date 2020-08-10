@@ -1,30 +1,44 @@
 <template>
   <div ref="root">
     <p>This is a root element</p>
-    <input ref="todoinput" v-model="model" />
+    <div>
+      <div class="flex">
+        <label>姓名：</label>
+        <input ref="nameinput" v-model.trim="formData.name" maxlength="16" />
+      </div>
+      <div class="flex">
+        <label>手机号：</label>
+        <input type="tel" v-model.trim="formData.phone" maxlength="11" />
+      </div>
+      <div class="flex">
+        <label>验证码：</label>
+        <input type="tel" v-model.trim="formData.code" maxlength="6" />
+      </div>
+    </div>
+    <p>{{formData}}</p>
   </div>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue'
+<script lang="ts">
+import { ref, reactive, onMounted } from "vue";
 
 export default {
   setup() {
-    const root = ref(null)
-    const todoinput = ref(null)
-    const model = ref('')
-
+    const nameinput = ref();
+    const formData = reactive({
+      name: "",
+      phone: "",
+      code: "",
+    });
 
     onMounted(() => {
-      // console.log(root.value)
-      todoinput.value.focus()
-    })
+      (nameinput.value as HTMLInputElement).focus();
+    });
 
     return {
-      root,
-      todoinput,
-      model
-    }
-  }
-}
+      nameinput,
+      formData,
+    };
+  },
+};
 </script>
