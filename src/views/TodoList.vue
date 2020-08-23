@@ -40,19 +40,22 @@ export default defineComponent({
     const CurrentInstance = getCurrentInstance();
 
     const addTodoName = ref(""); // input 绑定值
-    // const todoinput = ref(null); // input ref
+
+    // 清单列表
     const undoneTodoList = reactive([
       {
         id: Date.now(),
         name: "吃饭",
       },
-    ]); // 清单列表
+    ]);
+
+    // 已完成的清单列表
     const completedTodoList = reactive([
       {
         id: Date.now(),
         name: "睡觉",
       },
-    ]); // 已完成的清单列表
+    ]);
 
     const addTodoAction = () => {
       if (addTodoName.value === "")
@@ -93,7 +96,6 @@ export default defineComponent({
       addTodoAction,
       delTodoAction,
       doneTodo,
-      // todoinput,
       undoneTodoList,
       completedTodoList,
     };
