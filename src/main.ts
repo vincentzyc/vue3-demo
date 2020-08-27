@@ -2,5 +2,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import BaseComponents from './components/base'
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+
+app.use(BaseComponents)
+
+app.use(store).use(router).mount('#app')
