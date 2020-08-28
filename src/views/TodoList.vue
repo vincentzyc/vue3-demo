@@ -3,7 +3,7 @@
     <h3>Todo List</h3>
     <div>
       <label>
-        <input ref="todoinput" v-model="addTodoName" />
+        <input ref="todoinput" v-model="addTodoName" v-focus/>
       </label>
       <label>
         <button @click="addTodoAction">新增清单</button>
