@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
     <p>以下是自定义全局组件</p>
     <div style="margin-bottom:20px">
-      <YuiButton></YuiButton>
+      <YuiButton>自定义全局按钮</YuiButton>
     </div>
     <div style="margin-bottom:20px">
       <YuiSelect></YuiSelect>
