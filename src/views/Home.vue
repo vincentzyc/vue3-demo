@@ -36,7 +36,7 @@ export default defineComponent({
     return {
       direction: "top",
       pinPadding: 15,
-    };
+    }
   },
   methods: {
     handleClick() {
