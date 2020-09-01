@@ -42,6 +42,6 @@ export default defineComponent({
     handleClick() {
       alert("这是一个全局按钮组件");
     },
-  },
-});
+  }
+})
 </script>
