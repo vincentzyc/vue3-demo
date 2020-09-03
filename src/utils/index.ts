@@ -1,3 +1,6 @@
+type StringObj = { [k: string]: string }
+type UrlParamBack = null | string | StringObj
+
 /**
  * 获取数据类型
  * @param {any} value 需要判断的值
@@ -27,14 +30,14 @@ export function isString(val: unknown): boolean {
  * 获取url参数值
  * @param {String} name 参数名称(不传则返回一个全部参数对象)
  */
-export function getUrlParam(name: string = ''): null | string | { [k: string]: string } {
+export function getUrlParam(name: string = ''): UrlParamBack {
   let href = window.location.href, i = href.indexOf("?");
   if (i < 0) return null;
   let str = href.slice(i);
   if (!str) return null;
   let arr = str.match(/([^?&=#]+)=([^?&=#/]*)/g);
   if (!arr) return null;
-  let obj: { [k: string]: string } = {}
+  let obj: StringObj = {}
   arr.forEach(v => {
     let temp = v.split('=');
     if (temp.length > 0) {
