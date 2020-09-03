@@ -25,16 +25,22 @@ export function isString(val: unknown): boolean {
 
 /**
  * 获取url参数值
+ * @param {String} name 参数名称(不传则返回一个全部参数对象)
  */
-export function getUrlParam(name: string) {
-  let reg = new RegExp("([?&])" + name + "=([^&|^#]*)");
-  let href = window.location.href;
-  let index = href.indexOf("?");
-  if (index < 0) return null;
-  let str = href.slice(index, href.length);
-  if (str) {
-    let arr = str.match(reg);
-    if (arr) return decodeURIComponent(arr[2]);
-  }
-  return null;
+export function getUrlParam(name: string = ''): null | string | { [k: string]: string } {
+  let href = window.location.href, i = href.indexOf("?");
+  if (i < 0) return null;
+  let str = href.slice(i);
+  if (!str) return null;
+  let arr = str.match(/([^?&=#]+)=([^?&=#/]*)/g);
+  if (!arr) return null;
+  let obj: { [k: string]: string } = {}
+  arr.forEach(v => {
+    let temp = v.split('=');
+    if (temp.length > 0) {
+      obj[temp[0]] = temp[1];
+    }
+  })
+  if (name) return obj[name]
+  return obj
 }
