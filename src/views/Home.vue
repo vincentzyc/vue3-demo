@@ -8,7 +8,7 @@
       </p>
     </header>
 
-    <p>{{time}}</p>
+    <p style="color:red">{{time}}</p>
 
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
