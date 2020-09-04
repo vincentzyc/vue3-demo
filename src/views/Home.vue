@@ -8,6 +8,8 @@
       </p>
     </header>
 
+    <p>{{time}}</p>
+
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
     <p>以下是自定义全局组件</p>
@@ -24,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import dayjs from "dayjs";
 import { defineComponent } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
@@ -36,12 +39,26 @@ export default defineComponent({
     return {
       direction: "top",
       pinPadding: 15,
-    }
+      time: "",
+      timer: 0,
+    };
   },
   methods: {
     handleClick() {
       alert("这是一个全局按钮组件");
     },
-  }
-})
+    initTime() {
+      this.time = dayjs().format("YYYY-MM-DD HH:mm:ss");
+      this.timer = setInterval(() => {
+        this.time = dayjs().format("YYYY-MM-DD HH:mm:ss");
+      }, 1000);
+    },
+  },
+  created() {
+    this.initTime();
+  },
+  beforeUnmount() {
+    clearInterval(this.timer);
+  },
+});
 </script>
