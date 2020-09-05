@@ -1,0 +1,200 @@
+/*reset css*/
+@charset "utf-8";
+
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,ol,ul,li,footer,header,menu,nav,audio,video,input {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: normal;
+	vertical-align: baseline;
+	-webkit-tap-highlight-color: transparent;
+	-ms-tap-highlight-color: transparent;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+::-webkit-scrollbar {
+	display: none;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: 500
+}
+/*reset css end*/
+
+.container {
+	position: relative;
+}
+.row {
+	position: relative;
+	width: 100%;
+}
+.relative {
+	position: relative;
+}
+.text-left {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+.pull-right {
+	float: right !important;
+}
+.pull-left {
+	float: left !important;
+}
+.block {
+	display: block !important;
+}
+.inline {
+	display: inline !important;
+}
+.inline-block {
+	display: inline-block !important;
+}
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: ' ';
+}
+.clearfix:after {
+	clear: both;
+}
+
+/*flex*/
+
+.flex {
+	display: flex !important;
+}
+.flex-inline {
+	display: inline-flex !important;
+}
+
+/*flex-direction*/
+
+.flex-row {
+	flex-direction: row;
+}
+.flex-column {
+	flex-direction: column;
+}
+.row-reverse {
+	flex-direction: row-reverse;
+}
+.column-reverse {
+	flex-direction: column-reverse;
+}
+
+/*flex-wrap*/
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+/*justify-content*/
+.space-around {
+	justify-content: space-around;
+}
+.space-between {
+	justify-content: space-between;
+}
+.justify-start {
+	justify-content: flex-start;
+}
+.justify-end {
+	justify-content: flex-end;
+}
+.justify-center {
+	justify-content: center;
+}
+
+/*align-items*/
+
+.stretch {
+	align-items: stretch;
+}
+.align-start {
+	align-items: flex-start;
+}
+.align-end {
+	align-items: flex-end;
+}
+.align-middle {
+	align-items: center;
+}
+.flex-center {
+	justify-content: center;
+	align-items: center;
+}
+
+/*order*/
+
+.flex-first {
+	order: -1;
+}
+.flex-last {
+	order: 1;
+}
+
+/*flex*/
+
+.flex-auto {
+	flex: auto;
+}
+.flex-none {
+	flex: none;
+}
+
+/*align-self*/
+
+.selft-stretch {
+	align-self: stretch;
+}
+.align-self-start {
+	align-self: flex-start;
+}
+.align-self-end {
+	align-self: flex-end;
+}
+.align-self-middle {
+	align-self: center;
+}
+
+/*flex end*/
+
+/*超出部分省略号*/
+
+.txtover {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.txtover-2 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.txtover-3 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+/*end*/
