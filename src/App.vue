@@ -1,20 +1,19 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <router-link to="/todoList">ToDo</router-link>|
-      <router-link to="/luckdraw">LuckDraw</router-link>
-    </div>
+  <div class="wrapper">
+    <YunFooter></YunFooter>
     <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import YunFooter from "@/components/YunFooter.vue";
 
 export default defineComponent({
-  name: "App"
+  name: "App",
+  components: {
+    YunFooter,
+  },
 });
 </script>
 
@@ -26,5 +25,9 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.max640{
+  max-width 640px;
+  margin auto
 }
 </style>
