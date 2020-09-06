@@ -1,18 +1,10 @@
 <template>
   <div id="nav" class="max640">
-    <ul class="tabbar flex align-middle">
-      <li class="tabbar-item flex flex-auto justify-center">
-        <router-link to="/">Home</router-link>
-      </li>
-      <li class="tabbar-item flex flex-auto justify-center">
-        <router-link to="/about">About</router-link>
-      </li>
-      <li class="tabbar-item flex flex-auto justify-center">
-        <router-link to="/todoList">ToDo</router-link>
-      </li>
-      <li class="tabbar-item flex flex-auto justify-center">
-        <router-link to="/luckdraw">LuckDraw</router-link>
-      </li>
+    <ul class="tabbar flex">
+      <router-link to="/" class="tabbar-item flex flex-auto flex-center">Home</router-link>
+      <router-link to="/about" class="tabbar-item flex flex-auto flex-center">About</router-link>
+      <router-link to="/todoList" class="tabbar-item flex flex-auto flex-center">ToDo</router-link>
+      <router-link to="/luckdraw" class="tabbar-item flex flex-auto flex-center">LuckDraw</router-link>
     </ul>
   </div>
 </template>
@@ -39,5 +31,14 @@ export default defineComponent({
 }
 
 .tabbar-item {
+  height: 100%;
+}
+
+.tabbar-item:not(:last-child) {
+  border-right: 1px solid #e7e7e7;
+}
+
+.router-link-active {
+  color: #409eff;
 }
 </style>
