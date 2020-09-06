@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <header v-pin:[direction]="pinPadding" style="width:100%;text-align:center">
+    <header v-pin:[direction]="pinPadding" style="width:100%;text-align:center" class="max640">
       <p>
         Stick me
         <span style="color:red">{{pinPadding}}</span>
