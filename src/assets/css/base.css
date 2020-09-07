@@ -182,14 +182,21 @@ h1, h2, h3, h4, h5, h6 {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-.txtover-2 {
+.txtover1 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+.txtover2 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
-.txtover-3 {
+.txtover3 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
