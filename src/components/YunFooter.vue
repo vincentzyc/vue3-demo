@@ -1,10 +1,10 @@
 <template>
   <div id="nav" class="max640">
     <ul class="tabbar flex">
-      <router-link to="/" class="tabbar-item flex flex-auto flex-center">Home</router-link>
-      <router-link to="/about" class="tabbar-item flex flex-auto flex-center">About</router-link>
-      <router-link to="/todoList" class="tabbar-item flex flex-auto flex-center">ToDo</router-link>
-      <router-link to="/luckdraw" class="tabbar-item flex flex-auto flex-center">LuckDraw</router-link>
+      <router-link to="/" class="tabbar-item flex flex-center">Home</router-link>
+      <router-link to="/about" class="tabbar-item flex flex-center">About</router-link>
+      <router-link to="/todoList" class="tabbar-item flex flex-center">ToDo</router-link>
+      <router-link to="/luckdraw" class="tabbar-item flex flex-center">LuckDraw</router-link>
     </ul>
   </div>
 </template>
@@ -32,6 +32,8 @@ export default defineComponent({
 
 .tabbar-item {
   height: 100%;
+  color: #666;
+  flex: 1 0 25%;
 }
 
 .tabbar-item:not(:last-child) {
