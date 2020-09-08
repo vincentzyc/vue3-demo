@@ -27,6 +27,7 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "postcss-px2rem": "^0.3.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "typescript": "~3.9.3"
