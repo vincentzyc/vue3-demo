@@ -1,21 +1,21 @@
 <template>
   <div ref="root">
     <p>This is a root element</p>
-    <div>
-      <div class="flex">
+    <div class="flex flex-column">
+      <div class="flex flex-center mg-t10">
         <label>姓名：</label>
         <input ref="nameinput" v-model.trim="formData.name" maxlength="16" />
       </div>
-      <div class="flex">
+      <div class="flex flex-center mg-t10">
         <label>手机号：</label>
         <input type="tel" v-model.trim="formData.phone" maxlength="11" />
       </div>
-      <div class="flex">
+      <div class="flex flex-center mg-t10">
         <label>验证码：</label>
         <input type="tel" v-model.trim="formData.code" maxlength="6" />
       </div>
     </div>
-    <p>{{formData}}</p>
+    <p class="mg-t10">{{formData}}</p>
   </div>
 </template>
 
