@@ -12,7 +12,7 @@
 
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-    <p>以下是自定义全局组件</p>
+    <p class="mg10">以下是自定义全局组件</p>
     <div style="margin-bottom:20px">
       <YuiButton @click="handleClick()">自定义全局按钮</YuiButton>
     </div>
