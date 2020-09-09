@@ -1,5 +1,7 @@
 # vue3-demo
 
+preview [https://vincentzyc.github.io/vue3-demo](https://vincentzyc.github.io/vue3-demo)
+
 ## Project setup
 ```
 npm install
