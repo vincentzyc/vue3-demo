@@ -27,7 +27,7 @@ export default defineComponent({
 }
 
 .tabbar {
-  height: 50px;
+  height: 40px;
 }
 
 .tabbar-item {
