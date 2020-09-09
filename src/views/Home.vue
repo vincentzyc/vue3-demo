@@ -13,14 +13,15 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
     <p class="mg10">以下是自定义全局组件</p>
-    <div style="margin-bottom:20px">
+    <div class="mg-b20">
       <YuiButton @click="handleClick()">自定义全局按钮</YuiButton>
     </div>
-    <div style="margin-bottom:20px">
+    <div class="mg-b20">
       <YuiSelect></YuiSelect>
     </div>
-    <div style="margin-bottom:20px">
-      <input type="range" min="0" max="500" v-model="pinPadding" />
+    <div class="mg-b20 flex flex-center">
+      自定义指令：
+      <input type="range" min="0" max="500" v-model="pinPadding" style="z-index:9" />
     </div>
   </div>
 </template>
