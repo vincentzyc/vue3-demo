@@ -24,6 +24,8 @@ export default defineComponent({
   left: 0;
   right: 0;
   border-top: 1px solid #e7e7e7;
+  z-index: 999;
+  background: #fff;
 }
 
 .tabbar {
