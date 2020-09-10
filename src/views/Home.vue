@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home text-center">
     <header v-pin:[direction]="pinPadding" style="width:100%;text-align:center" class="max640">
       <p>
         Stick me
@@ -8,7 +8,7 @@
       </p>
     </header>
 
-    <p style="color:red">{{time}}</p>
+    <p class="cred mg20">{{time}}</p>
 
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
@@ -23,6 +23,7 @@
       自定义指令：
       <input type="range" min="0" max="500" v-model="pinPadding" style="z-index:9" />
     </div>
+    <Button type="danger">危险按钮</Button>
   </div>
 </template>
 
@@ -30,6 +31,7 @@
 import dayjs from "dayjs";
 import { defineComponent } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { Dialog } from "vant";
 
 export default defineComponent({
   name: "Home",
@@ -39,14 +41,17 @@ export default defineComponent({
   data() {
     return {
       direction: "top",
-      pinPadding: 15,
+      pinPadding: 40,
       time: "",
       timer: 0,
     };
   },
   methods: {
     handleClick() {
-      alert("这是一个全局按钮组件");
+      Dialog({
+        title: "标题",
+        message: "这是一个全局按钮组件",
+      });
     },
     initTime() {
       this.time = dayjs().format("YYYY-MM-DD HH:mm:ss");
