@@ -23,7 +23,7 @@
       自定义指令：
       <input type="range" min="0" max="500" v-model="pinPadding" style="z-index:9" />
     </div>
-    <Button type="danger">危险按钮</Button>
+    <Button type="success">成功按钮</Button>
   </div>
 </template>
 
@@ -31,12 +31,13 @@
 import dayjs from "dayjs";
 import { defineComponent } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-import { Dialog } from "vant";
+import { Dialog, Button } from "vant";
 
 export default defineComponent({
   name: "Home",
   components: {
     HelloWorld,
+    Button,
   },
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <div class="todo-list">
+  <div class="todo-list text-center mg20">
     <h3>Todo List</h3>
     <div>
       <label>
