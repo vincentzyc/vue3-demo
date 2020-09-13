@@ -1,5 +1,5 @@
 <template>
-  <div ref="root">
+  <div ref="root" class="text-center">
     <p>This is a root element</p>
     <div class="flex flex-column">
       <div class="flex flex-center mg-t10">
