@@ -1,11 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@/views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue')
   },
   {
     path: '/about',
@@ -13,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "luckdraw-about" */ '@/views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
   },
   {
     path: '/todoList',
@@ -23,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/luckdraw',
     name: 'LuckDraw',
-    component: () => import(/* webpackChunkName: "luckdraw-about" */ '@/views/LuckDraw.vue')
+    component: () => import(/* webpackChunkName: "luckdraw" */ '@/views/LuckDraw.vue')
   }
 ]
 
