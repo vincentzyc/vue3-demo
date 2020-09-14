@@ -42,7 +42,7 @@ export default defineComponent({
   data() {
     return {
       direction: "top",
-      pinPadding: 40,
+      pinPadding: 0,
       time: "",
       timer: 0,
     };
