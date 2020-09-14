@@ -1,30 +1,26 @@
 <template>
   <div class="todo-list text-center mg20">
-    <h3>Todo List</h3>
-    <div>
-      <label>
-        <input ref="todoinput" v-model="addTodoName" v-focus="200"/>
-      </label>
-      <label>
-        <button @click="addTodoAction">新增清单</button>
-      </label>
+    <h3 class="mg10">Todo List</h3>
+    <div class="flex flex-center">
+      <input ref="todoinput" v-model="addTodoName" v-focus="200" />
+      <van-button type="primary" size="small" class="mg-l10" @click="addTodoAction">新增清单</van-button>
     </div>
     <div>
-      <h3>任务清单</h3>
+      <h3 class="mg10">任务清单</h3>
       <ul>
-        <li v-for="item in undoneTodoList" :key="item.id">
+        <li v-for="item in undoneTodoList" :key="item.id" class="mg10">
           <span>---{{ item.name }}---</span>
-          <button @click="doneTodo(item)">已完成</button>
-          <button @click="delTodoAction(item, true)">删除</button>
+          <van-button type="success" size="small" class="mg-l10" @click="doneTodo(item)">已完成</van-button>
+          <van-button type="danger" size="small" class="mg-l10" @click="delTodoAction(item, true)">删除</van-button>
         </li>
       </ul>
     </div>
     <div class="done-todo-area">
-      <h3>已完成的任务清单</h3>
+      <h3 class="mg10">已完成的任务清单</h3>
       <ul>
-        <li v-for="item in completedTodoList" :key="item.id">
+        <li v-for="item in completedTodoList" :key="item.id" class="mg10">
           <span>---{{ item.name }}---</span>
-          <button @click="delTodoAction(item, false)">删除</button>
+          <van-button type="danger" size="small" class="mg-l10" @click="delTodoAction(item, false)">删除</van-button>
         </li>
       </ul>
     </div>
@@ -63,9 +59,9 @@ export default defineComponent({
       // if (addTodoName.value === "") return todoinput.focus();
       const obj = {
         id: Date.now(),
-        name: addTodoName,
+        name: addTodoName.value,
       };
-      undoneTodoList.push(JSON.parse(JSON.stringify(obj)));
+      undoneTodoList.push(obj);
       addTodoName.value = "";
     };
 
