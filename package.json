@@ -11,7 +11,7 @@
     "core-js": "^3.6.5",
     "dayjs": "^1.8.35",
     "vant": "^3.0.0-alpha.4",
-    "vue": "^3.0.0-0",
+    "vue": "^3.0.0-rc.10",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
@@ -24,7 +24,7 @@
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0-0",
+    "@vue/compiler-sfc": "^3.0.0-rc.10",
     "@vue/eslint-config-typescript": "^5.0.2",
     "babel-plugin-import": "^1.13.0",
     "eslint": "^6.7.2",
