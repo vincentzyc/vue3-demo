@@ -23,7 +23,7 @@
       自定义指令：
       <input type="range" min="0" max="500" v-model="pinPadding" style="z-index:9" />
     </div>
-    <Button type="success">成功按钮</Button>
+    <Button type="success" @click="showToast">成功按钮</Button>
   </div>
 </template>
 
@@ -31,7 +31,7 @@
 import dayjs from "dayjs";
 import { defineComponent } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-import { Dialog, Button } from "vant";
+import { Button, Dialog, Toast } from "vant";
 
 export default defineComponent({
   name: "Home",
@@ -48,6 +48,9 @@ export default defineComponent({
     };
   },
   methods: {
+    showToast() {
+      Toast("这是一个消息提示");
+    },
     handleClick() {
       Dialog({
         title: "标题",
