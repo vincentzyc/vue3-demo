@@ -16,13 +16,24 @@
       </div>
     </div>
     <p class="mg-t10">{{formData}}</p>
+    <Steps :active="active">
+      <Step>买家下单</Step>
+      <Step>商家接单</Step>
+      <Step>买家提货</Step>
+      <Step>交易完成</Step>
+    </Steps>
   </div>
 </template>
 
 <script lang="ts">
 import { ref, reactive, onMounted } from "vue";
+import { Step, Steps } from "vant";
 
 export default {
+  components: {
+    Step,
+    Steps,
+  },
   setup() {
     const nameinput = ref();
     const formData = reactive({
