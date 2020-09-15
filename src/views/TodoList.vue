@@ -3,15 +3,15 @@
     <h3 class="mg10">Todo List</h3>
     <div class="flex flex-center">
       <input ref="todoinput" v-model="addTodoName" v-focus="200" />
-      <van-button type="primary" size="small" class="mg-l10" @click="addTodoAction">新增清单</van-button>
+      <Button type="primary" size="small" @click="addTodoAction">新增清单</Button>
     </div>
     <div>
       <h3 class="mg10">任务清单</h3>
       <ul>
         <li v-for="item in undoneTodoList" :key="item.id" class="mg10">
           <span>---{{ item.name }}---</span>
-          <van-button type="success" size="small" class="mg-l10" @click="doneTodo(item)">已完成</van-button>
-          <van-button type="danger" size="small" class="mg-l10" @click="delTodoAction(item, true)">删除</van-button>
+          <Button type="success" size="small" @click="doneTodo(item)">已完成</Button>
+          <Button type="danger" size="small" @click="delTodoAction(item, true)">删除</Button>
         </li>
       </ul>
     </div>
@@ -20,7 +20,7 @@
       <ul>
         <li v-for="item in completedTodoList" :key="item.id" class="mg10">
           <span>---{{ item.name }}---</span>
-          <van-button type="danger" size="small" class="mg-l10" @click="delTodoAction(item, false)">删除</van-button>
+          <Button type="danger" size="small" @click="delTodoAction(item, false)">删除</Button>
         </li>
       </ul>
     </div>
@@ -29,9 +29,13 @@
 
 <script lang="ts">
 import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
+import { Button } from "vant";
 
 export default defineComponent({
   name: "ToDoList",
+  components: {
+    Button,
+  },
   setup() {
     const CurrentInstance = getCurrentInstance();
 
