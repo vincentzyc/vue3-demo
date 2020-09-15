@@ -16,7 +16,7 @@
       </div>
     </div>
     <p class="mg-t10">{{formData}}</p>
-    <Steps :active="active">
+    <Steps :active="1">
       <Step>买家下单</Step>
       <Step>商家接单</Step>
       <Step>买家提货</Step>
