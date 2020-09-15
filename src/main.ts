@@ -7,12 +7,9 @@ import './assets/css/main.styl'
 import BaseComponents from './components/base'
 import BaseDirective from './directive'
 
-// import { Button } from 'vant';
-
 const app = createApp(App)
 
 app.use(BaseComponents)
 app.use(BaseDirective)
-// app.use(Button);
 
 app.use(store).use(router).mount('#app')
