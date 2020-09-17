@@ -46,7 +46,7 @@ export default {
 
     return () => {
       return (
-        <div class="mg20" style="background:#f7f8fa">
+        <div style="background:#f7f8fa">
           <NavBar
             title="标题"
             left-text="返回"
