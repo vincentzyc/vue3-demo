@@ -5,6 +5,7 @@
       <router-link to="/about" class="tabbar-item flex flex-center">About</router-link>
       <router-link to="/todoList" class="tabbar-item flex flex-center">ToDo</router-link>
       <router-link to="/luckdraw" class="tabbar-item flex flex-center">LuckDraw</router-link>
+      <router-link to="/tsx" class="tabbar-item flex flex-center">Tsx</router-link>
     </ul>
   </div>
 </template>
@@ -35,7 +36,8 @@ export default defineComponent({
 .tabbar-item {
   height: 100%;
   color: #666;
-  flex: 1 0 25%;
+  font-size: 14px;
+  flex: 1 0 20%;
 }
 
 .tabbar-item:not(:last-child) {
