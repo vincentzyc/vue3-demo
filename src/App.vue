@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
     <YunFooter></YunFooter>
-    <router-view />
+    <transition name="van-fade">
+      <router-view />
+    </transition>
   </div>
 </template>
 
