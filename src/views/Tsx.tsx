@@ -1,5 +1,6 @@
 import { ref, reactive } from "vue";
 import { AddressList, NavBar, Toast } from "vant";
+import router from '@/router'
 
 export default {
   setup() {
@@ -37,11 +38,11 @@ export default {
     }
 
     const onClickLeft = () => {
-      Toast('返回');
+      router.back()
     }
 
     const onClickRight = () => {
-      Toast('按钮');
+      router.push('/todoList')
     }
 
     return () => {
@@ -50,7 +51,7 @@ export default {
           <NavBar
             title="标题"
             left-text="返回"
-            right-text="按钮"
+            right-text="Todo"
             left-arrow
             onClick-left={onClickLeft}
             onClick-right={onClickRight}
