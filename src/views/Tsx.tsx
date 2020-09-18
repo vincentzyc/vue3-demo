@@ -49,7 +49,7 @@ export default {
       return (
         <div style="background:#f7f8fa">
           <NavBar
-            title="标题"
+            title="地址管理"
             left-text="返回"
             right-text="Todo"
             left-arrow
