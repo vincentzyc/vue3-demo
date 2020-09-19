@@ -1,6 +1,6 @@
 <template>
   <div ref="root" class="text-center">
-    <p>This is a root element</p>
+    <p class="mg20">This is a root element</p>
     <div class="flex flex-column">
       <div class="flex flex-center mg-t10">
         <label>姓名：</label>
@@ -16,6 +16,7 @@
       </div>
     </div>
     <p class="mg-t10">{{formData}}</p>
+    <Button type="primary" @click="insertName()">姓名插入哈哈</Button>
     <Steps :active="1">
       <Step>买家下单</Step>
       <Step>商家接单</Step>
@@ -27,15 +28,17 @@
 
 <script lang="ts">
 import { ref, reactive, onMounted } from "vue";
-import { Step, Steps } from "vant";
+import { Button, Step, Steps } from "vant";
 
 export default {
   components: {
+    Button,
     Step,
     Steps,
   },
   setup() {
     const nameinput = ref();
+    const selectionStart = ref(0);
     const formData = reactive({
       name: "",
       phone: "",
@@ -46,9 +49,18 @@ export default {
       (nameinput.value as HTMLInputElement).focus();
     });
 
+    const insertName = () => {
+      const index = (nameinput.value as HTMLInputElement).selectionStart;
+      if (typeof index !== "number") return;
+      formData.name =
+        formData.name.slice(0, index) + "哈哈" + formData.name.slice(index);
+    };
+
     return {
       nameinput,
       formData,
+      insertName,
+      selectionStart,
     };
   },
 };
