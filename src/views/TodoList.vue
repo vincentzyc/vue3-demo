@@ -7,34 +7,44 @@
     </div>
     <div>
       <h3 class="mg10">任务清单</h3>
-      <ul>
-        <li v-for="item in undoneTodoList" :key="item.id" class="mg10">
-          <span>---{{ item.name }}---</span>
-          <Button type="success" size="small" @click="doneTodo(item)">已完成</Button>
-          <Button type="danger" size="small" @click="delTodoAction(item, true)">删除</Button>
-        </li>
-      </ul>
+      <CellGroup>
+        <Cell v-for="item in undoneTodoList" :key="item.id">
+          <template #title>
+            <span>---{{ item.name }}---</span>
+          </template>
+          <template #right-icon>
+            <Button type="success" size="small" @click="doneTodo(item)">已完成</Button>
+            <Button type="danger" size="small" @click="delTodoAction(item, true)">删除</Button>
+          </template>
+        </Cell>
+      </CellGroup>
     </div>
     <div class="done-todo-area">
       <h3 class="mg10">已完成的任务清单</h3>
-      <ul>
-        <li v-for="item in completedTodoList" :key="item.id" class="mg10">
-          <span>---{{ item.name }}---</span>
-          <Button type="danger" size="small" @click="delTodoAction(item, false)">删除</Button>
-        </li>
-      </ul>
+      <CellGroup>
+        <Cell v-for="item in completedTodoList" :key="item.id">
+          <template #title>
+            <span>---{{ item.name }}---</span>
+          </template>
+          <template #right-icon>
+            <Button type="danger" size="small" @click="delTodoAction(item, false)">删除</Button>
+          </template>
+        </Cell>
+      </CellGroup>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
-import { Button } from "vant";
+import { Button, Cell, CellGroup } from "vant";
 
 export default defineComponent({
   name: "ToDoList",
   components: {
     Button,
+    Cell,
+    CellGroup,
   },
   setup() {
     const CurrentInstance = getCurrentInstance();
