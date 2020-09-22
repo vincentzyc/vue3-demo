@@ -3,16 +3,16 @@
     <header v-pin:[direction]="pinPadding" style="width:100%;text-align:center" class="max640">
       <p>
         Stick me
-        <span style="color:red">{{pinPadding}}</span>
+        <span class="text-color">{{pinPadding}}</span>
         px from the {{ direction }} of the page
       </p>
     </header>
 
-    <p class="cred mg20">{{time}}</p>
+    <p class="mg20 text-color">{{time}}</p>
 
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-    <p class="mg10">以下是自定义全局组件</p>
+    <p class="mg10 text-color">以下是自定义全局组件</p>
     <div class="mg-b20">
       <YuiButton @click="handleClick()">自定义全局按钮</YuiButton>
     </div>
@@ -23,7 +23,7 @@
       自定义指令：
       <input type="range" min="0" max="500" v-model="pinPadding" style="z-index:9" />
     </div>
-    <Button type="success" @click="showToast">成功按钮</Button>
+    <Button type="success" @click="showToast">更改字体颜色</Button>
   </div>
 </template>
 
@@ -45,11 +45,13 @@ export default defineComponent({
       pinPadding: 0,
       time: "",
       timer: 0,
+      color: "red",
     };
   },
   methods: {
     showToast() {
-      Toast("这是一个消息提示");
+      Toast("字体颜色已改蓝色");
+      this.color = "blue";
     },
     handleClick() {
       Dialog({
@@ -72,3 +74,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style vars="{ color }">
+.text-color {
+  color: var(--color);
+}
+</style>
