@@ -17,12 +17,6 @@
     </div>
     <p class="mg-t10">{{formData}}</p>
     <Button type="primary" @click="insertName()">姓名插入哈哈</Button>
-    <!-- <Steps :active="1">
-      <Step>买家下单</Step>
-      <Step>商家接单</Step>
-      <Step>买家提货</Step>
-      <Step>交易完成</Step>
-    </Steps>-->
     <Steps direction="vertical" :active="1">
       <Step>
         <h3>【城市】物流状态1</h3>
