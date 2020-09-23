@@ -19,11 +19,11 @@
     <Button type="primary" @click="insertName()">姓名插入哈哈</Button>
     <Steps direction="vertical" :active="1">
       <Step>
-        <h3>【城市】物流状态1</h3>
+        <h3>商品已下单</h3>
         <p>{{twoNow}}</p>
       </Step>
       <Step>
-        <h3>【城市】物流状态2</h3>
+        <h3>快件已被揽收</h3>
         <p>{{now}}</p>
       </Step>
       <Step>
