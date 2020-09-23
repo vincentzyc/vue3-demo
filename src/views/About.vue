@@ -1,5 +1,6 @@
 <template>
   <div ref="root" class="text-center">
+    <NoticeBar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
     <p class="mg20">This is a root element</p>
     <div class="flex flex-column">
       <div class="flex flex-center mg-t10">
@@ -37,13 +38,14 @@
 <script lang="ts">
 import dayjs from "dayjs";
 import { ref, reactive, onMounted } from "vue";
-import { Button, Step, Steps } from "vant";
+import { Button, Step, Steps, NoticeBar } from "vant";
 
 export default {
   components: {
     Button,
     Step,
     Steps,
+    NoticeBar,
   },
   setup() {
     const nameinput = ref();
