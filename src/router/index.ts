@@ -25,9 +25,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "luckdraw" */ '@/views/LuckDraw.vue')
   },
   {
-    path: '/tsx',
-    name: 'Tsx',
-    component: () => import(/* webpackChunkName: "tsx" */ '@/views/Tsx')
+    path: '/address',
+    name: 'Address',
+    component: () => import(/* webpackChunkName: "address" */ '@/views/address/AddressList')
   }
 ]
 
