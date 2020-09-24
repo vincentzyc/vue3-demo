@@ -8,7 +8,7 @@
       <TabbarItem replace to="/about" icon="search">About</TabbarItem>
       <TabbarItem replace to="/todoList" icon="friends-o">ToDo</TabbarItem>
       <TabbarItem replace to="/luckdraw" icon="setting-o">LuckDraw</TabbarItem>
-      <TabbarItem replace to="/tsx" icon="star-o">About</TabbarItem>
+      <TabbarItem replace to="/address" icon="location-o">Address</TabbarItem>
     </Tabbar>
   </div>
 </template>
