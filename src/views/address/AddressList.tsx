@@ -1,10 +1,12 @@
 import { ref, reactive } from "vue";
-import { AddressList, NavBar, Toast } from "vant";
+import { AddressList, NavBar, Toast, Popup } from "vant";
+import AddressEdit from './AddressEdit'
 import router from '@/router'
 
 export default {
   setup() {
     const chosenAddressId = ref('1')
+    const showEdit = ref(false)
 
     const list = reactive([
       {
@@ -31,7 +33,8 @@ export default {
     ])
 
     const onAdd = () => {
-      Toast('新增地址');
+      // Toast('新增地址');
+      showEdit.value = true
     }
     const onEdit = (item: any, index: string) => {
       Toast('编辑地址:' + index);
@@ -65,7 +68,10 @@ export default {
             onAdd={onAdd}
             onEdit={onEdit}
           />
-        </div>
+          <Popup vModel={[showEdit.value, 'show']} position="bottom" round style="height: 80%" >
+            <AddressEdit />
+          </Popup>
+        </div >
       );
     };
   }
