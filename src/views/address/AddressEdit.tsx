@@ -1,7 +1,6 @@
 import { ref } from "vue";
 import { defineComponent } from 'vue';
 import { Field } from "vant";
-// import areaList from '@/assets/js/area';
 
 export default defineComponent({
   setup() {
@@ -34,17 +33,17 @@ export default defineComponent({
     //   }
     // }
     return () => (
-      <div class="mg20">
+      <div class="mg10">
         {/* <!-- 输入任意文本 --> */}
-        <Field vModel={text.value} label="文本" placeholder="请输入文本"/>
+        <Field vModel={text.value} label="文本" placeholder="请输入文本" />
         {/* <!-- 输入手机号，调起手机号键盘 --> */}
-        <Field vModel={tel.value} type="tel" label="手机号" placeholder="请输入手机号"/>
+        <Field vModel={tel.value} type="tel" label="手机号" placeholder="请输入手机号" />
         {/* <!-- 允许输入正整数，调起纯数字键盘 --> */}
-        <Field vModel={digit.value} type="digit" label="整数" placeholder="请输入整数"/>
+        <Field vModel={digit.value} type="digit" label="整数" placeholder="请输入整数" />
         {/* <!-- 允许输入数字，调起带符号的纯数字键盘 --> */}
-        <Field vModel={number.value} type="number" label="数字" placeholder="请输入数字（支持小数）"/>
+        <Field vModel={number.value} type="number" label="数字" placeholder="请输入数字（支持小数）" />
         {/* <!-- 输入密码 --> */}
-        <Field vModel={password.value} type="password" label="密码" placeholder="请输入密码"/>
+        <Field vModel={password.value} type="password" label="密码" placeholder="请输入密码" />
       </div>
     )
   }
