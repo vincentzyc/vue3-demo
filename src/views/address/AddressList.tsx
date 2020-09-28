@@ -59,7 +59,7 @@ export default {
             onClick-right={onClickRight}
           />
           <AddressList
-            vModel={chosenAddressId.value}
+            v-model={chosenAddressId.value}
             list={list}
             disabledList={disabledList}
             disabledText="以下地址超出配送范围"
@@ -67,7 +67,7 @@ export default {
             onAdd={onAdd}
             onEdit={onEdit}
           />
-          <Popup vModel={[showEdit.value, 'show']} position="bottom" round style="height: 80%" >
+          <Popup v-model={[showEdit.value, 'show']} position="bottom" round style="height: 80%" >
             <AddressEdit />
           </Popup>
         </div >
