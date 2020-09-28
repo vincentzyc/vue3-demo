@@ -1,14 +1,18 @@
 <template>
   <div class="home text-center">
-    <header v-pin:[direction]="pinPadding" style="width:100%;text-align:center" class="max640">
+    <header
+      v-pin:[direction]="pinPadding"
+      style="width: 100%; text-align: center"
+      class="max640"
+    >
       <p>
         Stick me
-        <span class="text-color">{{pinPadding}}</span>
+        <span class="text-color">{{ pinPadding }}</span>
         px from the {{ direction }} of the page
       </p>
     </header>
 
-    <p class="mg20 text-color">{{time}}</p>
+    <p class="mg20 text-color">{{ time }}</p>
 
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
@@ -21,7 +25,13 @@
     </div>
     <div class="mg-b20 flex flex-center">
       自定义指令：
-      <input type="range" min="0" max="500" v-model="pinPadding" style="z-index:9" />
+      <input
+        type="range"
+        min="0"
+        max="500"
+        v-model="pinPadding"
+        style="z-index: 9"
+      />
     </div>
     <Button type="success" @click="showToast">更改字体颜色</Button>
   </div>
@@ -46,6 +56,7 @@ export default defineComponent({
       time: "",
       timer: 0,
       color: "red",
+      city: ["", "", ""],
     };
   },
   methods: {
