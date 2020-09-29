@@ -3,12 +3,11 @@
     <transition name="van-fade">
       <router-view />
     </transition>
-    <Tabbar route placeholder>
+    <Tabbar route placeholder v-show="showFooter">
       <TabbarItem replace to="/" icon="home-o">Home</TabbarItem>
       <TabbarItem replace to="/about" icon="search">About</TabbarItem>
       <TabbarItem replace to="/todoList" icon="friends-o">ToDo</TabbarItem>
       <TabbarItem replace to="/luckdraw" icon="setting-o">LuckDraw</TabbarItem>
-      <TabbarItem replace to="/address" icon="location-o">Address</TabbarItem>
     </Tabbar>
   </div>
 </template>
@@ -22,6 +21,11 @@ export default defineComponent({
   components: {
     Tabbar,
     TabbarItem,
+  },
+  computed: {
+    showFooter() {
+      return this.$route.path.split("/").length < 3;
+    },
   },
 });
 </script>
