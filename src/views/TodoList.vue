@@ -32,12 +32,14 @@
         </Cell>
       </CellGroup>
     </div>
+    <Button type="primary" size="small" @click="goAddress">地址列表</Button>
   </div>
 </template>
 
 <script lang="ts">
 import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
 import { Button, Cell, CellGroup } from "vant";
+import router from "@/router";
 
 export default defineComponent({
   name: "ToDoList",
@@ -94,12 +96,13 @@ export default defineComponent({
     };
 
     const doneTodo = (item: { id: number; name: string }) => {
-      undoneTodoList.splice(
-        undoneTodoList.findIndex((i) => i.id === item.id),
-        1
-      );
+      undoneTodoList.splice(undoneTodoList.findIndex((i) => i.id === item.id), 1);
       completedTodoList.push(item);
     };
+
+    function goAddress() {
+      router.push("/address/list");
+    }
 
     return {
       addTodoName,
@@ -108,6 +111,7 @@ export default defineComponent({
       doneTodo,
       undoneTodoList,
       completedTodoList,
+      goAddress,
     };
   },
 });
