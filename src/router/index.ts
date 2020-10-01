@@ -25,9 +25,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "luckdraw" */ '@/views/LuckDraw.vue')
   },
   {
-    path: '/address',
+    path: '/address/list',
     name: 'Address',
     component: () => import(/* webpackChunkName: "address" */ '@/views/address/AddressList')
+  },
+  {
+    path: '/address/edit',
+    name: 'AddressEdit',
+    component: () => import(/* webpackChunkName: "address" */ '@/views/address/AddressEdit')
   }
 ]
 
