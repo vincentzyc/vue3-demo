@@ -1,17 +1,19 @@
 import { defineComponent, ref, reactive } from 'vue';
+import { useExpose } from '@/composition/use-expose';
 import { Popup, Picker } from 'vant';
 import CITYS from './city.json';
 
 export default defineComponent({
   props: {
-    value: {
+    modelValue: {
       type: Array,
       default: () => [],
     }
   },
-  setup(props, ctx) {
+  setup(props, { emit }) {
     const showPicker = ref(false)
     const valuesArr = ref(['', '', ''])
+    const adsPicker = ref()
     const columns = reactive([
       {
         values: ['']
@@ -23,16 +25,6 @@ export default defineComponent({
         values: ['']
       }
     ])
-
-    // function onChange() { }
-    function close(boolean: boolean) {
-      showPicker.value = false;
-      ctx.emit('close', valuesArr, boolean)
-    }
-
-    function open() {
-      showPicker.value = true
-    }
 
     function getChildAddress(province: string, city?: string): string[] {
       if (!province) return [];
@@ -57,6 +49,35 @@ export default defineComponent({
       return cityList
     }
 
+    function onChange(value: ['', '', '']) {
+      console.log(adsPicker.value);
+      if (!showPicker.value) return;
+      if (!value[0]) return;
+      if (valuesArr.value[0] !== value[0]) {
+        //改变省份
+        const cityList = getChildAddress(value[0]);
+        const areaList = getChildAddress(value[0], cityList[0]);
+        adsPicker.value.setColumnValues(1, cityList);
+        adsPicker.value.setColumnValues(2, areaList);
+      } else if (valuesArr.value[1] !== value[1]) {
+        //改变市
+        const areaList = getChildAddress(value[0], value[1]);
+        adsPicker.value.setColumnValues(2, areaList);
+        adsPicker.value.setColumnValue(2, areaList[0]);
+      }
+      valuesArr.value = adsPicker.value.getValues();
+      emit('update:modelValue', valuesArr.value);
+    }
+
+    function close(boolean: boolean) {
+      showPicker.value = false;
+      emit('close', valuesArr.value, boolean)
+    }
+
+    function open() {
+      showPicker.value = true
+    }
+
     function initLocalCitys() {
       const province = CITYS.map(v => v.n);
       const city = getChildAddress(province[0])
@@ -65,29 +86,23 @@ export default defineComponent({
       columns[1].values = city;
       columns[2].values = area;
       valuesArr.value = [province[0], city[0], area[0]];
-      ctx.emit('input', valuesArr.value)
+      emit('input', valuesArr.value)
     }
 
     initLocalCitys()
 
-    return {
-      showPicker,
-      columns,
-      close,
-      open
-    }
-  },
-  render() {
-    return (
-      <Popup v-model={[this.showPicker, 'show']} position="bottom">
+    useExpose({ open, close });
+
+    return () => (
+      <Popup v-model={[showPicker.value, 'show']} position="bottom">
         <Picker
           show-toolbar
           title="请选择省市区"
-          ref="adsPicker"
-          columns={this.columns}
-          // onChange={onChange}
-          onCancel={this.close(false)}
-          onConfirm={this.close(true)}
+          ref={adsPicker}
+          columns={columns}
+          onChange={onChange}
+          onCancel={close}
+          onConfirm={close}
         />
       </Popup>
     )
