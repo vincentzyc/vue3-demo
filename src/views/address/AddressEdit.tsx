@@ -1,5 +1,5 @@
 import { defineComponent, ref, computed } from "vue";
-import { Field, NavBar } from "vant";
+import { Field, NavBar, Button } from "vant";
 import { useRouter } from "vue-router";
 import CityPicker from "@/components/city-picker"
 
@@ -47,6 +47,7 @@ export default defineComponent({
             onClick={openCity}
           />
           <Field v-model={address.value} label="详细地址" placeholder="请输入详细地址" />
+          <Button type="primary" block>保存</Button>
         </div>
 
         <CityPicker v-model={city.value} ref={cityPicker} />
