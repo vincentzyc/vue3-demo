@@ -1,5 +1,5 @@
 import { defineComponent, ref, reactive, computed } from "vue";
-import { Field, NavBar, Button } from "vant";
+import { Field, NavBar, Button,Toast} from "vant";
 import { useRouter } from "vue-router";
 import CityPicker from "@/components/city-picker"
 
@@ -30,6 +30,7 @@ export default defineComponent({
     }
 
     const save = () => {
+      Toast("保存")
       console.log(form);
     }
 
