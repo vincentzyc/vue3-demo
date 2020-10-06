@@ -8,6 +8,7 @@ export default defineComponent({
     const router = useRouter()
 
     const cityPicker = ref()
+    const vanForm = ref()
 
     const form = reactive({
       text: '',
@@ -30,10 +31,13 @@ export default defineComponent({
     }
 
     const onSubmit = () => {
-      Toast("保存")
-      console.log('submit', form);
+      vanForm.value.validate().then(() => {
+        Toast("保存")
+        console.log('submit', form);
+      }).catch((err: []) => {
+        console.log(err);
+      })
     }
-
 
     return () => (
       <div>
@@ -44,9 +48,9 @@ export default defineComponent({
           onClick-left={onClickLeft}
         />
         <div class="mg10">
-          <Form validate-first>
+          <Form validate-first ref={vanForm}>
             <Field v-model={form.text} label="姓名" placeholder="请输入姓名" rules={[{ required: true, message: '请输入姓名' }]} />
-            <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11} />
+            <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11} rules={[{ required: true, message: '请输入手机号' }]} />
             <Field
               readonly
               label="选择城市"
@@ -54,8 +58,9 @@ export default defineComponent({
               modelValue={cityValue.value}
               placeholder="请选择城市"
               onClick={openCity}
+              rules={[{ required: true, message: '请选择城市' }]}
             />
-            <Field v-model={form.address} label="详细地址" placeholder="请输入详细地址" />
+            <Field v-model={form.address} label="详细地址" placeholder="请输入详细地址" rules={[{ required: true, message: '请输入详细地址' }]} />
             <Button type="primary" block onClick={onSubmit}>保存</Button>
           </Form>
         </div>
