@@ -1,5 +1,5 @@
 import { defineComponent, ref, reactive, computed } from "vue";
-import { Field, NavBar, Button,Toast} from "vant";
+import { Form, Field, NavBar, Button, Toast } from "vant";
 import { useRouter } from "vue-router";
 import CityPicker from "@/components/city-picker"
 
@@ -29,9 +29,9 @@ export default defineComponent({
       router.back()
     }
 
-    const save = () => {
+    const onSubmit = () => {
       Toast("保存")
-      console.log(form);
+      console.log('submit', form);
     }
 
 
@@ -44,18 +44,20 @@ export default defineComponent({
           onClick-left={onClickLeft}
         />
         <div class="mg10">
-          <Field v-model={form.text} label="姓名" placeholder="请输入姓名" />
-          <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11}/>
-          <Field
-            readonly
-            label="选择城市"
-            rightIcon="arrow"
-            modelValue={cityValue.value}
-            placeholder="请选择城市"
-            onClick={openCity}
-          />
-          <Field v-model={form.address} label="详细地址" placeholder="请输入详细地址" />
-          <Button type="primary" block onClick={save}>保存</Button>
+          <Form validate-first>
+            <Field v-model={form.text} label="姓名" placeholder="请输入姓名" rules={[{ required: true, message: '请输入姓名' }]} />
+            <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11} />
+            <Field
+              readonly
+              label="选择城市"
+              rightIcon="arrow"
+              modelValue={cityValue.value}
+              placeholder="请选择城市"
+              onClick={openCity}
+            />
+            <Field v-model={form.address} label="详细地址" placeholder="请输入详细地址" />
+            <Button type="primary" block onClick={onSubmit}>保存</Button>
+          </Form>
         </div>
 
         <CityPicker v-model={form.city} ref={cityPicker} />
