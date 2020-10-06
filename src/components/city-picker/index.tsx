@@ -50,7 +50,6 @@ export default defineComponent({
     }
 
     function onChange(value: ['', '', '']) {
-      console.log(adsPicker.value);
       if (!showPicker.value) return;
       if (!value[0]) return;
       if (valuesArr.value[0] !== value[0]) {
@@ -69,9 +68,14 @@ export default defineComponent({
       emit('update:modelValue', valuesArr.value);
     }
 
-    function close(boolean: boolean) {
+    function confirm() {
       showPicker.value = false;
-      emit('close', valuesArr.value, boolean)
+      emit('close', valuesArr.value)
+      emit('update:modelValue', valuesArr.value);
+    }
+    function cancel() {
+      showPicker.value = false;
+      emit('close', valuesArr.value)
     }
 
     function open() {
@@ -86,7 +90,6 @@ export default defineComponent({
       columns[1].values = city;
       columns[2].values = area;
       valuesArr.value = [province[0], city[0], area[0]];
-      emit('input', valuesArr.value)
     }
 
     initLocalCitys()
@@ -101,8 +104,8 @@ export default defineComponent({
           ref={adsPicker}
           columns={columns}
           onChange={onChange}
-          onCancel={close}
-          onConfirm={close}
+          onCancel={cancel}
+          onConfirm={confirm}
         />
       </Popup>
     )
