@@ -17,6 +17,12 @@ export default defineComponent({
       city: []
     })
 
+    const patterns = reactive({
+      phone: /^1[0-9]{10}$/,
+      name: /^[\u4e00-\u9fa5]{2,20}$/,
+      address: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/gi
+    })
+
     const cityValue = computed(() => {
       if (form.city.length > 0) return form.city.join(' ')
       return ''
@@ -49,7 +55,7 @@ export default defineComponent({
         />
         <div class="mg10">
           <Form validate-first ref={vanForm}>
-            <Field v-model={form.text} label="姓名" placeholder="请输入姓名" rules={[{ required: true, message: '请输入姓名' }]} />
+            <Field v-model={form.text} label="姓名" placeholder="请输入姓名" rules={[{ pattern: patterns.name, message: '请输入姓名' }]} />
             <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11} rules={[{ required: true, message: '请输入手机号' }]} />
             <Field
               readonly
