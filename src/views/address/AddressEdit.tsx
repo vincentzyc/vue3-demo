@@ -17,11 +17,26 @@ export default defineComponent({
       city: []
     })
 
-    const patterns = reactive({
+    const patterns = {
       phone: /^1[0-9]{10}$/,
       name: /^[\u4e00-\u9fa5]{2,20}$/,
       address: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/gi
-    })
+    }
+
+    const messages = {
+      phone: (val: string) => {
+        if (val === '') return '请输入手机号'
+        return '手机号不正确'
+      },
+      name: (val: string) => {
+        if (val === '') return '请输入姓名'
+        return '姓名输入有误'
+      },
+      address: (val: string) => {
+        if (val === '') return '请输入详细地址'
+        return '详细地址输入有误'
+      }
+    }
 
     const cityValue = computed(() => {
       if (form.city.length > 0) return form.city.join(' ')
@@ -55,8 +70,8 @@ export default defineComponent({
         />
         <div class="mg10">
           <Form validate-first ref={vanForm}>
-            <Field v-model={form.text} label="姓名" placeholder="请输入姓名" rules={[{ pattern: patterns.name, message: '请输入姓名' }]} />
-            <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11} rules={[{ required: true, message: '请输入手机号' }]} />
+            <Field v-model={form.text} label="姓名" placeholder="请输入姓名" rules={[{ pattern: patterns.name, message: messages.name }]} />
+            <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11} rules={[{ pattern: patterns.phone, message: messages.phone }]} />
             <Field
               readonly
               label="选择城市"
@@ -66,7 +81,7 @@ export default defineComponent({
               onClick={openCity}
               rules={[{ required: true, message: '请选择城市' }]}
             />
-            <Field v-model={form.address} label="详细地址" placeholder="请输入详细地址" rules={[{ required: true, message: '请输入详细地址' }]} />
+            <Field v-model={form.address} label="详细地址" placeholder="请输入详细地址" rules={[{ pattern: patterns.address, message: messages.address }]} />
             <Button type="primary" block onClick={onSubmit}>保存</Button>
           </Form>
         </div>
