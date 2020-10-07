@@ -20,7 +20,7 @@ export default defineComponent({
     const patterns = {
       phone: /^1[0-9]{10}$/,
       name: /^[\u4e00-\u9fa5]{2,20}$/,
-      address: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/gi
+      address: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/
     }
 
     const messages = {
@@ -33,6 +33,7 @@ export default defineComponent({
         return '姓名输入有误'
       },
       address: (val: string) => {
+        console.log(val);
         if (val === '') return '请输入详细地址'
         return '详细地址输入有误'
       }
