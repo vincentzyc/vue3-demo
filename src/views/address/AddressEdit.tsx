@@ -33,7 +33,6 @@ export default defineComponent({
         return '姓名输入有误'
       },
       address: (val: string) => {
-        console.log(val);
         if (val === '') return '请输入详细地址'
         return '详细地址输入有误'
       }
