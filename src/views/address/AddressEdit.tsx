@@ -54,8 +54,8 @@ export default defineComponent({
 
     const onSubmit = () => {
       vanForm.value.validate().then(() => {
-        Toast("保存")
         console.log('submit', form);
+        Toast("保存")
       }).catch((err: []) => {
         console.log(err);
       })
