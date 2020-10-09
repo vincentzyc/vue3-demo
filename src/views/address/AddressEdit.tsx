@@ -75,6 +75,10 @@ export default defineComponent({
       })
     }
 
+    const handleDelete = () => {
+      toast('删除')
+    }
+
     return () => (
       <div>
         <NavBar
@@ -97,7 +101,10 @@ export default defineComponent({
               rules={[{ required: true, message: '请选择城市' }]}
             />
             <Field v-model={form.ads} label="详细地址" placeholder="请输入详细地址" rules={[{ pattern: patterns.ads, message: messages.ads }]} />
-            <Button type="primary" block onClick={onSubmit}>保存</Button>
+            <div class="mg10 mg-t20">
+              <Button type="danger" round block onClick={onSubmit}>保存</Button>
+              <Button round block onClick={handleDelete} style="margin-top:20px">删除</Button>
+            </div>
           </Form>
         </div>
 
