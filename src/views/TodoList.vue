@@ -32,7 +32,7 @@
         </Cell>
       </CellGroup>
     </div>
-    <Button type="primary" size="small" @click="goAddress">地址列表</Button>
+    <Button type="primary" block @click="goAddress">地址列表</Button>
   </div>
 </template>
 
