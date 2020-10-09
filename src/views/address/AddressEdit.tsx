@@ -1,6 +1,8 @@
 import { defineComponent, ref, reactive, computed } from "vue";
-import { Form, Field, NavBar, Button, Toast } from "vant";
+import { Form, Field, NavBar, Button } from "vant";
 import { useRouter } from "vue-router";
+import { openLoading, closeLoading, toast } from '@/components/Loading';
+import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import CityPicker from "@/components/city-picker"
 
 export default defineComponent({
@@ -11,16 +13,18 @@ export default defineComponent({
     const vanForm = ref()
 
     const form = reactive({
-      text: '',
+      id: Date.now(),
+      name: '',
       tel: '',
       address: '',
+      ads: '',
       city: []
     })
 
     const patterns = {
       phone: /^1[0-9]{10}$/,
       name: /^[\u4e00-\u9fa5]{2,20}$/,
-      address: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/
+      ads: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/
     }
 
     const messages = {
@@ -32,7 +36,7 @@ export default defineComponent({
         if (val === '') return '请输入姓名'
         return '姓名输入有误'
       },
-      address: (val: string) => {
+      ads: (val: string) => {
         if (val === '') return '请输入详细地址'
         return '详细地址输入有误'
       }
@@ -47,14 +51,25 @@ export default defineComponent({
       cityPicker.value.open()
     }
 
-    const onClickLeft = () => {
+    const routerBack = () => {
       router.back()
     }
 
     const onSubmit = () => {
       vanForm.value.validate().then(() => {
+        openLoading('正在保存');
         console.log('submit', form);
-        Toast("保存")
+        const addressList = getLocalStorage('addressList');
+        if (addressList && Array.isArray(addressList)) {
+          form.address = form.city.join('') + form.ads
+          addressList.push(form)
+        }
+        setLocalStorage('addressList', addressList)
+        setTimeout(() => {
+          closeLoading()
+          toast('保存成功')
+          routerBack()
+        }, 1000);
       }).catch((err: []) => {
         console.log(err);
       })
@@ -66,11 +81,11 @@ export default defineComponent({
           title="地址管理"
           left-text="返回"
           left-arrow
-          onClick-left={onClickLeft}
+          onClick-left={routerBack}
         />
         <div class="mg10">
           <Form validate-first ref={vanForm}>
-            <Field v-model={form.text} label="姓名" placeholder="请输入姓名" rules={[{ pattern: patterns.name, message: messages.name }]} />
+            <Field v-model={form.name} label="姓名" placeholder="请输入姓名" rules={[{ pattern: patterns.name, message: messages.name }]} />
             <Field v-model={form.tel} type="tel" label="手机号" placeholder="请输入手机号" maxlength={11} rules={[{ pattern: patterns.phone, message: messages.phone }]} />
             <Field
               readonly
@@ -81,7 +96,7 @@ export default defineComponent({
               onClick={openCity}
               rules={[{ required: true, message: '请选择城市' }]}
             />
-            <Field v-model={form.address} label="详细地址" placeholder="请输入详细地址" rules={[{ pattern: patterns.address, message: messages.address }]} />
+            <Field v-model={form.ads} label="详细地址" placeholder="请输入详细地址" rules={[{ pattern: patterns.ads, message: messages.ads }]} />
             <Button type="primary" block onClick={onSubmit}>保存</Button>
           </Form>
         </div>
