@@ -1,13 +1,15 @@
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { AddressList, NavBar, Toast } from "vant";
+import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 
 export default {
   setup() {
     const router = useRouter()
     const chosenAddressId = ref('1')
+    const localAddress = getLocalStorage('addressList')
 
-    const list = reactive([
+    const list = reactive(localAddress || [
       {
         id: '1',
         name: '张三',
@@ -21,8 +23,6 @@ export default {
         tel: '1310000000',
         address: '浙江省杭州市拱墅区莫干山路 50 号',
       },
-    ])
-    const disabledList = reactive([
       {
         id: '3',
         name: '王五',
@@ -30,6 +30,8 @@ export default {
         address: '浙江省杭州市滨江区江南大道 15 号',
       },
     ])
+
+    if (!localAddress) setLocalStorage('addressList', list)
 
     const onAdd = () => {
       router.push('/address/edit')
@@ -60,8 +62,6 @@ export default {
           <AddressList
             v-model={chosenAddressId.value}
             list={list}
-            disabledList={disabledList}
-            disabledText="以下地址超出配送范围"
             defaultTagText="默认"
             onAdd={onAdd}
             onEdit={onEdit}
