@@ -1,6 +1,7 @@
 import { defineComponent, ref, reactive, computed } from "vue";
-import { Form, Field, NavBar, Button } from "vant";
+import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { Form, Field, NavBar, Button, Dialog } from "vant";
 import { openLoading, closeLoading, toast } from '@/components/Loading';
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import CityPicker from "@/components/city-picker"
@@ -8,11 +9,12 @@ import CityPicker from "@/components/city-picker"
 export default defineComponent({
   setup() {
     const router = useRouter()
+    const store = useStore()
 
     const cityPicker = ref()
     const vanForm = ref()
 
-    const form = reactive({
+    let form = reactive({
       id: Date.now(),
       name: '',
       tel: '',
@@ -41,6 +43,8 @@ export default defineComponent({
         return '详细地址输入有误'
       }
     }
+
+    const selectAddress = computed(() => store.state.selectAddress)
 
     const cityValue = computed(() => {
       if (form.city.length > 0) return form.city.join(' ')
@@ -76,8 +80,21 @@ export default defineComponent({
     }
 
     const handleDelete = () => {
-      toast('删除')
+      Dialog.confirm({
+        title: '提示',
+        message: '确定删除此地址？',
+      }).then(() => {
+        // on confirm
+        toast('删除')
+      }).catch(() => {
+        // on cancel
+      });
     }
+
+    const initAddress = () => {
+      if (selectAddress.value) form = selectAddress.value
+    }
+    initAddress()
 
     return () => (
       <div>
@@ -103,7 +120,7 @@ export default defineComponent({
             <Field v-model={form.ads} label="详细地址" placeholder="请输入详细地址" rules={[{ pattern: patterns.ads, message: messages.ads }]} />
             <div class="mg10 mg-t20">
               <Button type="danger" round block onClick={onSubmit}>保存</Button>
-              <Button round block onClick={handleDelete} style="margin-top:20px">删除</Button>
+              <Button round block onClick={handleDelete} style="margin-top:20px" v-show={selectAddress.value}>删除</Button>
             </div>
           </Form>
         </div>
