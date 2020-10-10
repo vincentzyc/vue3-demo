@@ -3,6 +3,7 @@ module.exports = {
   outputDir: "docs",
   productionSourceMap: false,
   chainWebpack: config => {
+    config.plugins.delete('preload')
     config.plugins.delete('prefetch')
   },
   devServer: {
