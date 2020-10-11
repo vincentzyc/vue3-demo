@@ -8,12 +8,12 @@ export default {
   setup() {
     const router = useRouter()
     const store = useStore()
-    const chosenAddressId = ref('1')
+    const chosenAddressId = ref()
     const localAddress = getLocalStorage('addressList')
 
     const list = reactive(localAddress || [
       {
-        id: '1',
+        id: 1,
         name: '张三',
         tel: '13012345678',
         address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室',
@@ -22,7 +22,7 @@ export default {
         isDefault: true,
       },
       {
-        id: '2',
+        id: 2,
         name: '李四',
         tel: '13112345678',
         address: '浙江省杭州市拱墅区莫干山路 50 号',
@@ -30,7 +30,7 @@ export default {
         city: ["浙江省", "杭州市", "拱墅区"],
       },
       {
-        id: '3',
+        id: 3,
         name: '王五',
         tel: '13212345678',
         address: '浙江省杭州市滨江区江南大道 15 号',
