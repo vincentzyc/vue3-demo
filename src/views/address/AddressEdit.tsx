@@ -1,7 +1,7 @@
 import { defineComponent, ref, reactive, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { Form, Field, NavBar, Button, Dialog } from "vant";
+import { Form, Field, NavBar, Button, Dialog, Cell, Switch } from "vant";
 import { openLoading, closeLoading, toast } from '@/components/Loading';
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import CityPicker from "@/components/city-picker"
@@ -68,7 +68,10 @@ export default defineComponent({
         let addressList = getLocalStorage('addressList');
         if (addressList && Array.isArray(addressList)) {
           form.address = form.city.join('') + form.ads
-          const index = addressList.findIndex(v => v.id === form.id)
+          const index = addressList.findIndex(v => {
+            if (form.isDefault) v.isDefault = false
+            return v.id === form.id
+          })
           if (index >= 0) {
             addressList.splice(index, 1, form)
           } else {
@@ -107,6 +110,12 @@ export default defineComponent({
       });
     }
 
+    const SwitchSlots = {
+      'right-icon': () => (
+        <Switch v-model={form.isDefault} size="24" />
+      ),
+    };
+
     const initAddress = () => {
       if (selectAddress.value) form = selectAddress.value
     }
@@ -134,6 +143,7 @@ export default defineComponent({
               rules={[{ required: true, message: '请选择城市' }]}
             />
             <Field v-model={form.ads} label="详细地址" placeholder="请输入详细地址" rules={[{ pattern: patterns.ads, message: messages.ads }]} />
+            <Cell title="默认地址" v-slots={SwitchSlots}> </Cell>
             <div class="mg10 mg-t20">
               <Button type="danger" round block onClick={onSubmit}>保存</Button>
               <Button round block onClick={handleDelete} style="margin-top:20px" v-show={selectAddress.value}>删除</Button>
