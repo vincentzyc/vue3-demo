@@ -14,4 +14,4 @@ export function closeLoading() {
   Toast.clear()
 }
 
-export const toast = Toast
+export const VantToast = Toast
