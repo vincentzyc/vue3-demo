@@ -5,6 +5,7 @@ import { Form, Field, NavBar, Button, Dialog } from "vant";
 import { openLoading, closeLoading, toast } from '@/components/Loading';
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import CityPicker from "@/components/city-picker"
+import { AddressInfo } from "./address"
 
 export default defineComponent({
   setup() {
@@ -20,13 +21,14 @@ export default defineComponent({
       tel: '',
       address: '',
       ads: '',
-      city: []
+      city: [],
+      isDefault: false
     })
 
     const patterns = {
       phone: /^1[0-9]{10}$/,
       name: /^[\u4e00-\u9fa5]{2,20}$/,
-      ads: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/
+      ads: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/gi
     }
 
     const messages = {
@@ -85,7 +87,14 @@ export default defineComponent({
         message: '确定删除此地址？',
       }).then(() => {
         // on confirm
-        toast('删除')
+        let localAddress = getLocalStorage('addressList')
+        localAddress = localAddress?.filter((v: AddressInfo) => v.id !== form.id)
+        if (form.isDefault) {
+          if (Array.isArray(localAddress) && localAddress.length > 0) localAddress[0].isDefault = true
+        }
+        setLocalStorage('addressList', localAddress)
+        toast('删除成功')
+        router.back()
       }).catch(() => {
         // on cancel
       });
