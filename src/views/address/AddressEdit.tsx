@@ -28,7 +28,7 @@ export default defineComponent({
     const patterns = {
       phone: /^1[0-9]{10}$/,
       name: /^[\u4e00-\u9fa5]{2,20}$/,
-      ads: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/gi
+      ads: /^[\u4E00-\u9FA5A-Za-z0-9_—()（）-]+$/
     }
 
     const messages = {
@@ -65,10 +65,17 @@ export default defineComponent({
       vanForm.value.validate().then(() => {
         openLoading('正在保存');
         console.log('submit', form);
-        const addressList = getLocalStorage('addressList');
+        let addressList = getLocalStorage('addressList');
         if (addressList && Array.isArray(addressList)) {
           form.address = form.city.join('') + form.ads
-          addressList.push(form)
+          const index = addressList.findIndex(v => v.id === form.id)
+          if (index >= 0) {
+            addressList.splice(index, 1, form)
+          } else {
+            addressList.push(form)
+          }
+        } else {
+          addressList = [form]
         }
         setLocalStorage('addressList', addressList)
         setTimeout(() => {
