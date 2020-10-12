@@ -1,11 +1,11 @@
-import { defineComponent, ref, reactive, computed } from "vue";
+import { defineComponent, ref, reactive, computed, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { Form, Field, NavBar, Button, Dialog, Cell, Switch } from "vant";
 import { openLoading, closeLoading, toast } from '@/components/Loading';
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import CityPicker from "@/components/city-picker"
-import { AddressInfo } from "./address"
+import { AddressInfo } from "./address-types"
 
 export default defineComponent({
   setup() {
@@ -120,6 +120,10 @@ export default defineComponent({
       if (selectAddress.value) form = selectAddress.value
     }
     initAddress()
+
+    onUnmounted(() => {
+      store.commit('setSelectAddress', null)
+    })
 
     return () => (
       <div>

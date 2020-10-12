@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { AddressList, NavBar } from "vant";
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
-import { AddressInfo } from "./address"
+import { AddressInfo } from "./address-types"
 
 
 export default {
