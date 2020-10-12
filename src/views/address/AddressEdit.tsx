@@ -2,10 +2,10 @@ import { defineComponent, ref, reactive, computed, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { Form, Field, NavBar, Button, Dialog, Cell, Switch } from "vant";
-import { openLoading, closeLoading, toast } from '@/components/Loading';
+import { openLoading, closeLoading, VantToast } from '@/components/Loading';
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
+import { AddressInfo } from "./address"
 import CityPicker from "@/components/city-picker"
-import { AddressInfo } from "./address-types"
 
 export default defineComponent({
   setup() {
@@ -83,7 +83,7 @@ export default defineComponent({
         setLocalStorage('addressList', addressList)
         setTimeout(() => {
           closeLoading()
-          toast('保存成功')
+          VantToast('保存成功')
           routerBack()
         }, 1000);
       }).catch((err: []) => {
@@ -103,7 +103,7 @@ export default defineComponent({
           if (Array.isArray(localAddress) && localAddress.length > 0) localAddress[0].isDefault = true
         }
         setLocalStorage('addressList', localAddress)
-        toast('删除成功')
+        VantToast('删除成功')
         router.back()
       }).catch(() => {
         // on cancel
