@@ -3,6 +3,8 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { AddressList, NavBar } from "vant";
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
+import { AddressInfo } from "./address"
+
 
 export default {
   setup() {
@@ -11,7 +13,7 @@ export default {
     const chosenAddressId = ref()
     const localAddress = getLocalStorage('addressList')
 
-    const list = reactive(localAddress || [
+    const list: Array<AddressInfo> = reactive(localAddress || [
       {
         id: 1,
         name: '张三',
@@ -28,6 +30,7 @@ export default {
         address: '浙江省杭州市拱墅区莫干山路50号',
         ads: "莫干山路 50 号",
         city: ["浙江省", "杭州市", "拱墅区"],
+        isDefault: false,
       },
       {
         id: 3,
@@ -36,7 +39,8 @@ export default {
         address: '浙江省杭州市滨江区江南大道15号',
         ads: "江南大道 15 号",
         city: ["浙江省", "杭州市", "滨江区"],
-      },
+        isDefault: false,
+      }
     ])
 
     if (!localAddress) setLocalStorage('addressList', list)
