@@ -69,9 +69,12 @@ export default defineComponent({
         if (addressList && Array.isArray(addressList)) {
           form.address = form.city.join('') + form.ads
           const index = addressList.findIndex(v => {
-            if (form.isDefault) v.isDefault = false
+
             return v.id === form.id
           })
+          if (form.isDefault) {
+            addressList.forEach(v => v.isDefault = false)
+          }
           if (index >= 0) {
             addressList.splice(index, 1, form)
           } else {
