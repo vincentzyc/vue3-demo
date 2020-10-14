@@ -1,0 +1,80 @@
+.chat-wrapper {
+  // height: 400px;
+  background: #eee;
+  // overflow-y: auto;
+  margin-bottom: 200px;
+
+  .avatar {
+    flex: none;
+    margin-right: 5px;
+    background: url('https://img.yzcdn.cn/vant/logo.png') no-repeat 0 0 / 100% 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+  }
+
+  .bubble {
+    padding: 10px 15px;
+    color: #333;
+    font-size: 14px;
+    line-height 22px;
+    background: #fff;
+    border: 1px solid #41b883;
+    border-radius: 5px;
+    position: relative;
+    min-width: 80px;
+    margin: 0 15px 0 5px;
+  }
+
+  .bubble:before {
+    content: '';
+    border-style: solid;
+    border-width: 8px;
+    position: absolute;
+    top: 8px;
+  }
+
+  .bubble-left:before {
+    border-color: transparent #41b883 transparent transparent;
+    left: -17px;
+  }
+
+  .bubble-right:before {
+    border-color: transparent transparent transparent #16b5eb;
+    right: -17px;
+  }
+
+  .bubble-right {
+    color: #fff;
+    background: #16b5eb;
+    border: 1px solid transparent;
+  }
+}
+
+.answers-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+
+  .btnbox {
+    flex: 0 0 50%;
+    text-align: center;
+
+    .btn {
+      background: #16b5eb;
+      margin: 5px 10px;
+      padding: 10px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      transition: 0.2s;
+
+      &:active {
+        background: #1296c3;
+      }
+    }
+  }
+}
