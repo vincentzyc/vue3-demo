@@ -2,19 +2,19 @@
   <div class="todo-list text-center mg20">
     <h3 class="mg10">Todo List</h3>
     <div class="flex flex-center">
-      <input ref="todoinput" v-model="addTodoName" v-focus="200" />
-      <Button type="primary" size="small" @click="addTodoAction">新增清单</Button>
+      <input ref="todoinput" v-focus="200" v-model="addTodoName" />
+      <Button @click="addTodoAction" size="small" type="primary">新增清单</Button>
     </div>
     <div>
       <h3 class="mg10">任务清单</h3>
       <CellGroup>
-        <Cell v-for="item in undoneTodoList" :key="item.id">
+        <Cell :key="item.id" v-for="item in undoneTodoList">
           <template #title>
             <span>---{{ item.name }}---</span>
           </template>
           <template #right-icon>
-            <Button type="success" size="small" @click="doneTodo(item)">已完成</Button>
-            <Button type="danger" size="small" @click="delTodoAction(item, true)">删除</Button>
+            <Button @click="doneTodo(item)" size="small" type="success">已完成</Button>
+            <Button @click="delTodoAction(item, true)" size="small" type="danger">删除</Button>
           </template>
         </Cell>
       </CellGroup>
@@ -22,17 +22,22 @@
     <div class="done-todo-area">
       <h3 class="mg10">已完成的任务清单</h3>
       <CellGroup>
-        <Cell v-for="item in completedTodoList" :key="item.id">
+        <Cell :key="item.id" v-for="item in completedTodoList">
           <template #title>
             <span>---{{ item.name }}---</span>
           </template>
           <template #right-icon>
-            <Button type="danger" size="small" @click="delTodoAction(item, false)">删除</Button>
+            <Button @click="delTodoAction(item, false)" size="small" type="danger">删除</Button>
           </template>
         </Cell>
       </CellGroup>
     </div>
-    <Button type="primary" block @click="goAddress">地址列表</Button>
+    <div class="mg10">
+      <Button @click="goAddress" block type="primary">地址列表</Button>
+    </div>
+    <div class="mg10 mg-t20">
+      <Button @click="goChat" block type="primary">聊天室</Button>
+    </div>
   </div>
 </template>
 
@@ -104,6 +109,10 @@ export default defineComponent({
       router.push("/address/list");
     }
 
+    function goChat() {
+      router.push("/chat/list");
+    }
+
     return {
       addTodoName,
       addTodoAction,
@@ -112,6 +121,7 @@ export default defineComponent({
       undoneTodoList,
       completedTodoList,
       goAddress,
+      goChat
     };
   },
 });
