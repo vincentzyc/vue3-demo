@@ -56,21 +56,10 @@ export default defineComponent(() => {
     router.back()
   }
 
-  const onClickRight = () => {
-    router.push('/todoList')
-  }
-
   return () => {
     return (
-      <div style="background:#f7f8fa">
-        <NavBar
-          title="地址管理"
-          left-text="返回"
-          right-text="Todo"
-          left-arrow
-          onClick-left={onClickLeft}
-          onClick-right={onClickRight}
-        />
+      <div class="pd-nav" style="background:#f7f8fa;min-height:100vh">
+        <NavBar fixed title="地址管理" left-text="返回" left-arrow onClick-left={onClickLeft} />
         <AddressList
           v-model={chosenAddressId.value}
           list={list}
