@@ -129,13 +129,8 @@ export default defineComponent({
     })
 
     return () => (
-      <div>
-        <NavBar
-          title="地址管理"
-          left-text="返回"
-          left-arrow
-          onClick-left={routerBack}
-        />
+      <div class="pd-nav">
+        <NavBar fixed title="地址管理" left-text="返回" left-arrow onClick-left={routerBack} />
         <div class="mg10">
           <Form validate-first ref={vanForm}>
             <Field v-model={form.name} label="姓名" placeholder="请输入姓名" rules={[{ pattern: patterns.name, message: messages.name }]} />
