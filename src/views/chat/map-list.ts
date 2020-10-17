@@ -3,11 +3,11 @@ import { QuestionList, AnswerList, MapList } from "./chat"
 export const questionList: QuestionList = {
   Q1: '<p>这是第1个问题<span class="cred">哈哈</span>自定义html</p>',
   Q2: '<img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="图片"/><img src="https://img.yzcdn.cn/vant/leaf.jpg" alt="图片" onload="scroll2Bottom()"/>',
-  Q3: '这是第3个问题',
-  Q4: '这是第4个问题',
+  Q3: '这是第3个问题这是第3个问题这是第3个问题',
+  Q4: '这是第4个这这是第4个问题题问题',
   Q5: '<p>这是第5个问题</p><img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt="ipad" onload="scroll2Bottom()"/>',
-  Q6: '这是第6个问题',
-  Q7: '这是第7个问题',
+  Q6: '这是第6个问第7个题',
+  Q7: '这是第7个问题第7个第7个',
   Q8: '问题结束',
   Q9: '结束语',
 }
