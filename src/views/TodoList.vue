@@ -35,9 +35,9 @@
     <div class="mg10">
       <Button @click="goAddress" block type="primary">地址列表</Button>
     </div>
-    <!-- <div class="mg10 mg-t20">
+    <div class="mg10 mg-t20">
       <Button @click="goChat" block type="primary">聊天室</Button>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -109,9 +109,9 @@ export default defineComponent({
       router.push("/address/list");
     }
 
-    // function goChat() {
-    //   router.push("/chat/list");
-    // }
+    function goChat() {
+      router.push("/chat/list");
+    }
 
     return {
       addTodoName,
@@ -121,7 +121,7 @@ export default defineComponent({
       undoneTodoList,
       completedTodoList,
       goAddress,
-      // goChat
+      goChat
     };
   },
 });
