@@ -31,7 +31,6 @@ export default defineComponent(() => {
   const scrollPageBottom = async () => {
     await nextTick()
     chatBottomHeight = useHeight(answerRef);
-    console.log(chatBottomHeight.value);
     window.scroll2Bottom()
   }
 
