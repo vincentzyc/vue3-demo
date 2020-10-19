@@ -12,7 +12,7 @@ export default defineComponent(() => {
   const answerRef = ref();
   const msgList: Array<MsgList> = reactive([])
 
-  let chatBottomHeight = useHeight(answerRef);
+  const chatBottomHeight = useHeight(answerRef);
 
   let timer = 0
   let ansList: Array<string> = reactive([])
@@ -30,7 +30,7 @@ export default defineComponent(() => {
 
   const scrollPageBottom = async () => {
     await nextTick()
-    chatBottomHeight = useHeight(answerRef);
+    chatBottomHeight.value = useHeight(answerRef).value;
     window.scroll2Bottom()
   }
 
@@ -79,8 +79,7 @@ export default defineComponent(() => {
           {item.direction === 'right' ? <div class="avatar"></div> : null}
         </li>
       ))}
-    </div>
-  )
+    </div>)
 
   const answerDom = () => ansList.length > 0 && (
     <div class="answers-wrapper flex flex-wrap max640" ref={answerRef}>
@@ -89,8 +88,7 @@ export default defineComponent(() => {
           <div class="flex flex-center btn" onClick={() => addAnswer(item)}>{answerList[item]}</div>
         </div>
       ))}
-    </div>
-  )
+    </div>)
 
   onMounted(() => {
     setQuestion('Q1')
