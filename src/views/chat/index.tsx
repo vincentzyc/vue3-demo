@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import { NavBar } from "vant";
 import { questionList, answerList, mapList } from "./map-list"
 import "@/assets/css/chat.styl"
-import { easeout } from '@/utils/dom';
+import { easeBottom } from '@/utils/dom';
 import { MsgList } from "./chat"
 import { useHeight } from '@/composition/use-rect';
 
@@ -11,18 +11,13 @@ export default defineComponent(() => {
   const router = useRouter()
   const answerRef = ref();
   const msgList: Array<MsgList> = reactive([])
-
   const chatBottomHeight = useHeight(answerRef);
 
   let timer = 0
   let ansList: Array<string> = reactive([])
   let answers = mapList.Q1
 
-  window.scroll2Bottom = () => {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const dom = scrollTop === document.documentElement.scrollTop ? document.documentElement : document.body;
-    easeout(dom, dom.offsetHeight - dom.clientHeight, 10)
-  }
+  window.scroll2Bottom = () => easeBottom()
 
   const onClickLeft = () => {
     router.back()
