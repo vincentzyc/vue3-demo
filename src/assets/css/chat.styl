@@ -1,3 +1,6 @@
+$blue-color = #16b5eb;
+$green-color = #41b883;
+
 .chat-wrapper {
   .avatar {
     flex: none;
@@ -14,7 +17,7 @@
     font-size: 14px;
     line-height: 22px;
     background: #fff;
-    border: 1px solid #41b883;
+    border: 1px solid $green-color;
     border-radius: 5px;
     position: relative;
     min-width: 80px;
@@ -34,18 +37,18 @@
   }
 
   .bubble-left:before {
-    border-color: transparent #41b883 transparent transparent;
+    border-color: transparent $green-color transparent transparent;
     left: -17px;
   }
 
   .bubble-right:before {
-    border-color: transparent transparent transparent #16b5eb;
+    border-color: transparent transparent transparent $blue-color;
     right: -17px;
   }
 
   .bubble-right {
     color: #fff;
-    background: #16b5eb;
+    background: $blue-color;
     border: 1px solid transparent;
   }
 }
@@ -61,7 +64,7 @@
     flex: 0 0 50%;
 
     .btn {
-      background: #16b5eb;
+      background: $blue-color;
       margin: 5px;
       padding: 8px 10px;
       border-radius: 5px;
@@ -76,5 +79,9 @@
         background: #1296c3;
       }
     }
+  }
+
+  .loadingtxt {
+    color: $blue-color;
   }
 }

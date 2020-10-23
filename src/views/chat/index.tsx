@@ -12,12 +12,18 @@ export default defineComponent(() => {
   const answerRef = ref();
   const msgList: Array<MsgList> = reactive([])
   const chatBottomHeight = useHeight(answerRef);
+  const showLoading = ref(true)
+  const loadingText = ref('对方正在输入中...')
 
   let timer = 0
+  let loadingTimer = 0
   let ansList: Array<string> = reactive([])
   let answers = mapList.Q1
 
   window.scroll2Bottom = () => easeBottom()
+
+  const getDelayTime = () => Math.ceil((Math.random() * 2 + 1.5) * 1000)  //1.5-3.5秒
+  const getLoadingDelayTime = () => Math.ceil(Math.random() + 0.5 * 1000)  //0.5-1.5秒
 
   const onClickLeft = () => {
     router.back()
@@ -31,6 +37,7 @@ export default defineComponent(() => {
 
   const chatFinish = () => {
     console.log('聊天结束');
+    showLoading.value = false
   }
 
   const setMsg = (message: string, direction: 'left' | 'right') => {
@@ -48,7 +55,7 @@ export default defineComponent(() => {
       timer = setTimeout(() => {
         setQuestion(answers as string)
         scrollPageBottom()
-      }, (Math.random() * 5) * 100);
+      }, getDelayTime());
     } else {
       ansList = Object.keys(answers)
     }
@@ -57,10 +64,14 @@ export default defineComponent(() => {
   const addAnswer = (item: string) => {
     setMsg(answerList[item], 'right')
     ansList = []
+    loadingText.value = '请稍等...'
+    loadingTimer = setTimeout(() => {
+      loadingText.value = '对方正在输入中...'
+    }, getLoadingDelayTime());
     timer = setTimeout(() => {
       setQuestion(typeof answers === 'string' ? answers : answers[item])
       scrollPageBottom()
-    }, (Math.random() * 5 + 5) * 100);
+    }, getDelayTime());
   }
 
   const messageDom = () => msgList.length > 0 && (
@@ -76,14 +87,19 @@ export default defineComponent(() => {
       ))}
     </div>)
 
-  const answerDom = () => ansList.length > 0 && (
+  const answerDom = () => ansList.length > 0 ? (
     <div class="answers-wrapper flex flex-wrap max640" ref={answerRef}>
       {ansList.map((item: string) => (
         <div class="btnbox col-6 flex">
           <div class="flex flex-center btn" onClick={() => addAnswer(item)}>{answerList[item]}</div>
         </div>
       ))}
-    </div>)
+    </div>
+  ) : (
+    <div class="answers-wrapper max640">
+      <div class="loadingtxt fs12 lh20  mg10 text-center" v-show={showLoading.value}>{loadingText.value}</div>
+    </div>
+    )
 
   onMounted(() => {
     setQuestion('Q1')
