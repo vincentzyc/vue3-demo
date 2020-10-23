@@ -106,6 +106,7 @@ export default defineComponent(() => {
   })
   onUnmounted(() => {
     clearTimeout(timer)
+    clearTimeout(loadingTimer)
   })
 
   return () => (
