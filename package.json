@@ -10,10 +10,10 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "dayjs": "^1.8.36",
-    "vant": "^3.0.0-beta.2",
-    "vue": "^3.0.0-0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vant": "^3.1.4",
+    "vue": "^3.1.5",
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.33.0",
