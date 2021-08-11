@@ -142,7 +142,7 @@ export default {
         },
       ]),
       awardList = computed(() => {
-        const newArr: {}[] = JSON.parse(JSON.stringify(awards));
+        const newArr: Record<string,unknown>[] = JSON.parse(JSON.stringify(awards));
         newArr.splice(4, 0, { name: "drawBtn" });
         return newArr;
       });
