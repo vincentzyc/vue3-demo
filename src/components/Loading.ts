@@ -1,6 +1,6 @@
 import { Toast } from "vant";
 
-export function openLoading(text: string) {
+export function openLoading(text: string): void {
   Toast.loading({
     message: text || '',
     duration: 0,       // 持续展示 toast
@@ -10,7 +10,7 @@ export function openLoading(text: string) {
   });
 }
 
-export function closeLoading() {
+export function closeLoading(): void {
   Toast.clear()
 }
 
