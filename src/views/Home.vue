@@ -76,8 +76,8 @@ export default defineComponent({
 });
 </script>
 
-<style vars="{ color }">
+<style>
 .text-color {
-  color: var(--color);
+  color: v-bind(color);
 }
 </style>
