@@ -1,5 +1,7 @@
 # vue3-demo
 
+update `<script setup>`
+
 ## Project setup
 ```
 npm install
