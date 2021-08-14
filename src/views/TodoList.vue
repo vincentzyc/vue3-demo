@@ -41,88 +41,68 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
+<script lang="ts" setup>
+import { ref, reactive, getCurrentInstance } from "vue";
 import { Button, Cell, CellGroup } from "vant";
 import router from "@/router";
 
-export default defineComponent({
-  name: "ToDoList",
-  components: {
-    Button,
-    Cell,
-    CellGroup,
+const CurrentInstance = getCurrentInstance();
+
+const addTodoName = ref(""); // input 绑定值
+
+// 清单列表
+const undoneTodoList = reactive([
+  {
+    id: Date.now(),
+    name: "吃饭",
   },
-  setup() {
-    const CurrentInstance = getCurrentInstance();
+]);
 
-    const addTodoName = ref(""); // input 绑定值
-
-    // 清单列表
-    const undoneTodoList = reactive([
-      {
-        id: Date.now(),
-        name: "吃饭",
-      },
-    ]);
-
-    // 已完成的清单列表
-    const completedTodoList = reactive([
-      {
-        id: Date.now(),
-        name: "睡觉",
-      },
-    ]);
-
-    const addTodoAction = () => {
-      if (addTodoName.value === "")
-        return (CurrentInstance?.refs?.todoinput as HTMLInputElement).focus();
-      // if (addTodoName.value === "") return todoinput.focus();
-      const obj = {
-        id: Date.now(),
-        name: addTodoName.value,
-      };
-      undoneTodoList.push(obj);
-      addTodoName.value = "";
-    };
-
-    const delTodoAction = (item: { id: number }, todo: boolean) => {
-      if (todo) {
-        undoneTodoList.splice(
-          undoneTodoList.findIndex((i) => i.id === item.id),
-          1
-        );
-      } else {
-        completedTodoList.splice(
-          completedTodoList.findIndex((i) => i.id === item.id),
-          1
-        );
-      }
-    };
-
-    const doneTodo = (item: { id: number; name: string }) => {
-      undoneTodoList.splice(undoneTodoList.findIndex((i) => i.id === item.id), 1);
-      completedTodoList.push(item);
-    };
-
-    function goAddress() {
-      router.push("/address/list");
-    }
-
-    function goChat() {
-      router.push("/chat/list");
-    }
-
-    return {
-      addTodoName,
-      addTodoAction,
-      delTodoAction,
-      doneTodo,
-      undoneTodoList,
-      completedTodoList,
-      goAddress,
-      goChat
-    };
+// 已完成的清单列表
+const completedTodoList = reactive([
+  {
+    id: Date.now(),
+    name: "睡觉",
   },
-});
+]);
+
+const addTodoAction = () => {
+  if (addTodoName.value === "")
+    return (CurrentInstance?.refs?.todoinput as HTMLInputElement).focus();
+  // if (addTodoName.value === "") return todoinput.focus();
+  const obj = {
+    id: Date.now(),
+    name: addTodoName.value,
+  };
+  undoneTodoList.push(obj);
+  addTodoName.value = "";
+};
+
+const delTodoAction = (item: { id: number }, todo: boolean) => {
+  if (todo) {
+    undoneTodoList.splice(
+      undoneTodoList.findIndex((i) => i.id === item.id),
+      1
+    );
+  } else {
+    completedTodoList.splice(
+      completedTodoList.findIndex((i) => i.id === item.id),
+      1
+    );
+  }
+};
+
+const doneTodo = (item: { id: number; name: string }) => {
+  undoneTodoList.splice(undoneTodoList.findIndex((i) => i.id === item.id), 1);
+  completedTodoList.push(item);
+};
+
+function goAddress() {
+  router.push("/address/list");
+}
+
+function goChat() {
+  router.push("/chat/list");
+}
+
 </script>

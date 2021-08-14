@@ -1,6 +1,6 @@
 # vue3-demo
 
-update `<script setup>`  About.vue
+update `<script setup>`  About.vue TodoList.vue
 
 ## Project setup
 ```
