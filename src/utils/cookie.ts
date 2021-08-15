@@ -1,11 +1,11 @@
 export function setCookie(key: string, value: string, time: number): void {
-  let cur = new Date();
+  const cur = new Date();
   cur.setTime(cur.getTime() + time * 24 * 3600 * 1000);
   document.cookie = `${key}=${encodeURIComponent(value)};expires=${time ? cur.toUTCString() : ''}}`
 }
 
 export function getCookie(key: string): string {
-  let data = document.cookie;
+  const data = document.cookie;
   let startIndex = data.indexOf(key + '=');
   if (startIndex > -1) {
     startIndex = startIndex + key.length + 1;
