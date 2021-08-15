@@ -30,16 +30,16 @@ export function isString(val: unknown): boolean {
  * 获取url参数值
  * @param {String} name 参数名称(不传则返回一个全部参数对象)
  */
-export function getUrlParam(name: string = ''): UrlParamBack {
-  let href = window.location.href, i = href.indexOf("?");
+export function getUrlParam(name = ''): UrlParamBack {
+  const href = window.location.href, i = href.indexOf("?");
   if (i < 0) return null;
-  let str = href.slice(i);
+  const str = href.slice(i);
   if (!str) return null;
-  let arr = str.match(/([^?&=#]+)=([^?&=#/]*)/g);
+  const arr = str.match(/([^?&=#]+)=([^?&=#/]*)/g);
   if (!arr) return null;
-  let obj: StringObj = {}
+  const obj: StringObj = {}
   arr.forEach(v => {
-    let temp = v.split('=');
+    const temp = v.split('=');
     if (temp.length > 0) {
       obj[temp[0]] = temp[1];
     }
