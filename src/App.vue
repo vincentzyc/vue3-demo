@@ -28,6 +28,6 @@ export default defineComponent({
     showFooter() {
       return this.$route.path.split("/").length < 3;
     },
-  },
-});
+  }
+})
 </script>
