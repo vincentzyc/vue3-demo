@@ -3,7 +3,7 @@
     <!-- 滚动号码 -->
     <div class="luckdraw-scroll">
       <ul class="bg-scroll">
-        <li v-for="(item, i) in list" :key="i" :class="{ 'anim' : animate && i == 0 }">
+        <li v-for="(item, i) in list" :key="i" :class="{ 'anim': animate && i == 0 }">
           <span class="lkq-name">{{ item.phone }}</span>
         </li>
       </ul>
@@ -48,15 +48,15 @@
       </svg>
       <ul class="awards-list">
         <li
-          v-for="(item,key) in awardList"
-          :key="item.id"
+          v-for="(item, key) in awardList"
+          :key="(item.id as number)"
           class="awards-item"
-          :class="{'awards-item-draw':key===4,'run-item':item.runId===current}"
+          :class="{ 'awards-item-draw': key === 4, 'run-item': item.runId === current }"
         >
-          <div v-if="key===4" @click="handleStart" class="draw-btn svelte-ecndpu">
+          <div v-if="key === 4" @click="handleStart" class="draw-btn svelte-ecndpu">
             <span class="draw-btn-text">点击抽奖</span>
           </div>
-          <div v-else>{{item.name}}</div>
+          <div v-else>{{ item.name }}</div>
         </li>
       </ul>
     </div>
@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive, computed, onMounted, nextTick } from "vue";
+import { defineComponent, ref, reactive, computed, onMounted, nextTick } from "vue";
 
 interface AwardTypes {
   id: number;
@@ -72,7 +72,7 @@ interface AwardTypes {
   name: string;
 }
 
-export default {
+export default defineComponent({
   name: "LuckDraw",
   setup() {
     const initSpeed = 200, // 初始速度
@@ -142,7 +142,7 @@ export default {
         },
       ]),
       awardList = computed(() => {
-        const newArr: Record<string,unknown>[] = JSON.parse(JSON.stringify(awards));
+        const newArr: Record<string, unknown>[] = JSON.parse(JSON.stringify(awards));
         newArr.splice(4, 0, { name: "drawBtn" });
         return newArr;
       });
@@ -231,7 +231,7 @@ export default {
       handleStart,
     };
   },
-};
+})
 </script>
 
 <style lang="stylus" scoped>
