@@ -49,7 +49,7 @@
       <ul class="awards-list">
         <li
           v-for="(item, key) in awardList"
-          :key="(item.id as number)"
+          :key="item.id"
           class="awards-item"
           :class="{ 'awards-item-draw': key === 4, 'run-item': item.runId === current }"
         >
@@ -141,8 +141,8 @@ export default defineComponent({
           name: "谢谢参与2",
         },
       ]),
-      awardList = computed(() => {
-        const newArr: Record<string, unknown>[] = JSON.parse(JSON.stringify(awards));
+      awardList = computed<typeof awards>(() => {
+        const newArr = JSON.parse(JSON.stringify(awards));
         newArr.splice(4, 0, { name: "drawBtn" });
         return newArr;
       });
