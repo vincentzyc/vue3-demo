@@ -40,6 +40,7 @@ import dayjs from "dayjs";
 import { ref, reactive, onMounted } from "vue";
 import { Button, Step, Steps, NoticeBar } from "vant";
 
+const root = ref();
 const nameinput = ref();
 const twoNow = dayjs().subtract(2, "day").format("YYYY-MM-DD HH:mm:ss");
 const now = dayjs().format("YYYY-MM-DD HH:mm:ss");
