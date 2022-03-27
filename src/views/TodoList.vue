@@ -48,6 +48,8 @@ import router from "@/router";
 
 const CurrentInstance = getCurrentInstance();
 
+const todoinput = ref()
+
 const addTodoName = ref(""); // input 绑定值
 
 // 清单列表
