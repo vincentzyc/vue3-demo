@@ -34,7 +34,7 @@ import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import { Button, Dialog, Toast } from "vant";
 
 export default defineComponent({
-  name: "Home",
+  name: "HomePgae",
   components: {
     HelloWorld,
     Button,
