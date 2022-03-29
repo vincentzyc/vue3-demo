@@ -44,8 +44,12 @@
 <script lang="ts" setup>
 import { ref, reactive, getCurrentInstance } from "vue";
 import { Button, Cell, CellGroup } from "vant";
-import router from "@/router";
+import { useRouter } from 'vue-router'
+import { useMainStore } from '@/pinia'
 
+const mainStore = useMainStore()
+
+const router = useRouter()
 const CurrentInstance = getCurrentInstance();
 
 const todoinput = ref()
@@ -53,12 +57,13 @@ const todoinput = ref()
 const addTodoName = ref(""); // input 绑定值
 
 // 清单列表
-const undoneTodoList = reactive([
-  {
-    id: Date.now(),
-    name: "吃饭",
-  },
-]);
+const undoneTodoList = mainStore.undoneTodoList
+// const undoneTodoList = reactive([
+//   {
+//     id: Date.now(),
+//     name: "吃饭",
+//   },
+// ]);
 
 // 已完成的清单列表
 const completedTodoList = reactive([
