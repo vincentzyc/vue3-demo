@@ -51,19 +51,13 @@ const mainStore = useMainStore()
 
 const router = useRouter()
 const CurrentInstance = getCurrentInstance();
-
 const todoinput = ref()
-
 const addTodoName = ref(""); // input 绑定值
 
-// 清单列表
+// 获取 pinia 任务清单列表
 const undoneTodoList = mainStore.undoneTodoList
-// const undoneTodoList = reactive([
-//   {
-//     id: Date.now(),
-//     name: "吃饭",
-//   },
-// ]);
+// 调用 pinia 的 actions 方法
+// mainStore.reset()
 
 // 已完成的清单列表
 const completedTodoList = reactive([
