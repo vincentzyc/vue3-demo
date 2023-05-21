@@ -234,7 +234,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="stylus" scoped>
+<style lang="less" scoped>
 .luckdraw-content {
   margin-top: 0.4rem;
   width: 100%;
