@@ -23,7 +23,7 @@
       自定义指令：
       <input type="range" min="0" max="500" v-model="pinPadding" style="z-index: 9" />
     </div>
-    <Button type="success" @click="showToast">更改字体颜色</Button>
+    <van-button type="success" @click="changeColor">更改字体颜色</van-button>
   </div>
 </template>
 
@@ -31,13 +31,12 @@
 import dayjs from "dayjs";
 import { defineComponent } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-import { Button, Dialog, Toast } from "vant";
+import { showDialog, showToast } from "vant";
 
 export default defineComponent({
   name: "HomePgae",
   components: {
     HelloWorld,
-    Button,
   },
   data() {
     return {
@@ -50,12 +49,12 @@ export default defineComponent({
     };
   },
   methods: {
-    showToast() {
-      Toast("字体颜色已改蓝色");
+    changeColor() {
+      showToast("字体颜色已改蓝色");
       this.color = "blue";
     },
     handleClick() {
-      Dialog({
+      showDialog({
         title: "标题",
         message: "这是一个全局按钮组件",
       });
