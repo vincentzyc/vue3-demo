@@ -5,29 +5,27 @@
         <component :is="Component" />
       </transition>
     </router-view>
-    <Tabbar placeholder route v-show="showFooter">
-      <TabbarItem icon="home-o" replace to="/">Home</TabbarItem>
-      <TabbarItem icon="search" replace to="/about">About</TabbarItem>
-      <TabbarItem icon="friends-o" replace to="/todoList">ToDo</TabbarItem>
-      <TabbarItem icon="setting-o" replace to="/luckdraw">LuckDraw</TabbarItem>
-    </Tabbar>
+    <van-tabbar placeholder route v-show="showFooter">
+      <van-tabbar-item icon="home-o" replace to="/">Home</van-tabbar-item>
+      <van-tabbar-item icon="search" replace to="/about">About</van-tabbar-item>
+      <van-tabbar-item icon="friends-o" replace to="/todoList">ToDo</van-tabbar-item>
+      <van-tabbar-item icon="setting-o" replace to="/luckdraw">LuckDraw</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { Tabbar, TabbarItem } from "vant";
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
-  name: "App",
-  components: {
-    Tabbar,
-    TabbarItem,
+  name: 'App',
+  setup() {
+    const routr = useRoute();
+    const showFooter = computed(() => routr.path.split('/').length < 3);
+    return {
+      showFooter,
+    };
   },
-  computed: {
-    showFooter() {
-      return this.$route.path.split("/").length < 3;
-    },
-  }
-})
+});
 </script>
