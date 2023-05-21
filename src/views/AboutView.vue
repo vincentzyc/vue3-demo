@@ -1,6 +1,6 @@
 <template>
   <div ref="root" class="text-center">
-    <NoticeBar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+    <van-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
     <p class="mg20">This is a root element</p>
     <div class="flex flex-column">
       <div class="flex flex-center mg-t10">
@@ -17,28 +17,27 @@
       </div>
     </div>
     <p class="mg-t10">{{ formData }}</p>
-    <Button type="primary" @click="insertName()">姓名插入哈哈</Button>
-    <Steps direction="vertical" :active="1">
-      <Step>
+    <van-button type="primary" @click="insertName()">姓名插入哈哈</van-button>
+    <van-steps direction="vertical" :active="1">
+      <van-step>
         <h3>商品已下单</h3>
         <p>{{ twoNow }}</p>
-      </Step>
-      <Step>
+      </van-step>
+      <van-step>
         <h3>快件已被揽收</h3>
         <p>{{ now }}</p>
-      </Step>
-      <Step>
+      </van-step>
+      <van-step>
         <h3>快件已发货</h3>
         <p>{{ now2 }}</p>
-      </Step>
-    </Steps>
+      </van-step>
+    </van-steps>
   </div>
 </template>
 
 <script lang="ts" setup>
 import dayjs from "dayjs";
 import { ref, reactive, onMounted } from "vue";
-import { Button, Step, Steps, NoticeBar } from "vant";
 
 const root = ref();
 const nameinput = ref();
