@@ -12,7 +12,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="stylus" scoped>
+<style scoped>
 .yui-button {
   border: none;
   outline: 0;
