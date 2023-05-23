@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
 import './assets/css/base.css'
 import './assets/css/main.less'
 import BaseComponents from './components/base'
@@ -17,4 +16,4 @@ app.use(BaseComponents)
 app.use(BaseDirective)
 app.use(createPinia())
 
-app.use(store).use(router).mount('#app')
+app.use(router).mount('#app')
