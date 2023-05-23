@@ -13,5 +13,3 @@ export function openLoading(text: string): void {
 export function closeLoading(): void {
   Toast.clear()
 }
-
-export const VantToast = Toast
