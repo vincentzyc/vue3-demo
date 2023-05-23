@@ -1,5 +1,4 @@
-import { defineComponent, ref, reactive } from 'vue';
-import { useExpose } from '@/composition/use-expose';
+import { defineComponent, ref, reactive,defineExpose } from 'vue';
 import { Popup, Picker } from 'vant';
 import CITYS from './city.json';
 
@@ -10,7 +9,7 @@ export default defineComponent({
       default: () => [],
     }
   },
-  setup(props, { emit }) {
+  setup(_props, { emit }) {
     const showPicker = ref(false)
     const valuesArr = ref(['', '', ''])
     const adsPicker = ref()
@@ -94,7 +93,7 @@ export default defineComponent({
 
     initLocalCitys()
 
-    useExpose({ open, close });
+    defineExpose({ open, close });
 
     return () => (
       <Popup v-model={[showPicker.value, 'show']} position="bottom">
