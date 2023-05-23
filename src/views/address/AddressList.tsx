@@ -1,14 +1,13 @@
 import { ref, reactive, defineComponent } from "vue";
-import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { AddressList, NavBar } from "vant";
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import { AddressInfo } from "./address"
-
+import { useMainStore } from '@/pinia';
 
 export default defineComponent(() => {
   const router = useRouter()
-  const store = useStore()
+  const mainStore = useMainStore();
   const chosenAddressId = ref()
   const localAddress = getLocalStorage('addressList')
 
@@ -48,7 +47,7 @@ export default defineComponent(() => {
     router.push('/address/edit')
   }
   const onEdit = (item: any) => {
-    store.commit('setSelectAddress', item)
+    mainStore.selectAddress = item
     router.push('/address/edit')
   }
 
