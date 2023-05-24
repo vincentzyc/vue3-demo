@@ -6,6 +6,12 @@ import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import { AddressInfo } from './address';
 import CityPicker from '@/components/city-picker';
 import { useMainStore } from '@/pinia';
+import 'vant/es/form/style';
+import 'vant/es/field/style';
+import 'vant/es/nav-bar/style';
+import 'vant/es/button/style';
+import 'vant/es/cell/style';
+import 'vant/es/switch/style';
 
 export default defineComponent({
   setup() {
@@ -130,7 +136,7 @@ export default defineComponent({
 
     return () => (
       <div class="pd-nav">
-        <NavBar fixed title="地址管理" left-text="返回" left-arrow onClick-left={routerBack} />
+        <NavBar fixed title="地址管理" left-text="返回" left-arrow onClickLeft={routerBack} />
         <div class="mg10">
           <Form validate-first ref={vanForm}>
             <Field
