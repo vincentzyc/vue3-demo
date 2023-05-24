@@ -4,6 +4,8 @@ import { AddressList, NavBar } from "vant";
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import { AddressInfo } from "./address"
 import { useMainStore } from '@/pinia';
+import 'vant/es/nav-bar/style';
+import 'vant/es/address-list/style';
 
 export default defineComponent(() => {
   const router = useRouter()
@@ -58,7 +60,7 @@ export default defineComponent(() => {
   return () => {
     return (
       <div class="pd-nav" style="background:#f7f8fa;min-height:100vh">
-        <NavBar fixed title="地址管理" left-text="返回" left-arrow onClick-left={onClickLeft} />
+        <NavBar fixed title="地址管理" left-text="返回" left-arrow onClickLeft={onClickLeft} />
         <AddressList
           v-model={chosenAddressId.value}
           list={list}
