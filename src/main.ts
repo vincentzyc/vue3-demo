@@ -6,8 +6,11 @@ import './assets/css/main.less'
 import BaseComponents from './components/base'
 import BaseDirective from './directive'
 import { createPinia } from 'pinia'
+// import 'vant/lib/index.css';
 import 'vant/es/dialog/style';
 import 'vant/es/toast/style';
+
+// import 'vant/es/nav-bar/style';  // 使用了 tsx 
 
 
 const app = createApp(App)
