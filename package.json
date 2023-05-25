@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vant/area-data": "^1.4.1",
     "dayjs": "^1.11.7",
     "pinia": "^2.0.36",
     "vant": "^4.3.1",
