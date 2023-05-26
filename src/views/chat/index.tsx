@@ -2,7 +2,7 @@ import { defineComponent, ref, reactive, nextTick, onMounted, onUnmounted } from
 import { useRouter } from "vue-router";
 import { NavBar } from "vant";
 import { questionList, answerList, mapList } from "./map-list"
-import "@/assets/css/chat.styl"
+import "@/assets/css/chat.less"
 import { easeBottom } from '@/utils/dom';
 import { MsgList } from "./chat"
 import { useHeight } from '@/composition/use-rect';
