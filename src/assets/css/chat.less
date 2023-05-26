@@ -17,7 +17,7 @@
     font-size: 14px;
     line-height: 22px;
     background: #fff;
-    border: 1px solid $green-color;
+    border: 1px solid @green-color;
     border-radius: 5px;
     position: relative;
     min-width: 80px;
@@ -37,18 +37,18 @@
   }
 
   .bubble-left:before {
-    border-color: transparent $green-color transparent transparent;
+    border-color: transparent @green-color transparent transparent;
     left: -17px;
   }
 
   .bubble-right:before {
-    border-color: transparent transparent transparent $blue-color;
+    border-color: transparent transparent transparent @blue-color;
     right: -17px;
   }
 
   .bubble-right {
     color: #fff;
-    background: $blue-color;
+    background: @blue-color;
     border: 1px solid transparent;
   }
 }
@@ -64,7 +64,7 @@
     flex: 0 0 50%;
 
     .btn {
-      background: $blue-color;
+      background: @blue-color;
       margin: 5px;
       padding: 8px 10px;
       border-radius: 5px;
@@ -82,6 +82,6 @@
   }
 
   .loadingtxt {
-    color: $blue-color;
+    color: @blue-color;
   }
 }
