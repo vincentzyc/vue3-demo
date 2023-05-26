@@ -1,8 +1,7 @@
-declare global {
-  interface Window {
-    scroll2Bottom(): void;
-  }
+interface Window {
+  scroll2Bottom(): void;
 }
+
 declare module '@vant/area-data' {
   export declare const areaList: {
     province_list: Record<string, string>;
